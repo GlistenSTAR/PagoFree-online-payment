@@ -13,7 +13,8 @@
     "lottie-react-native": "^3.5.0",
     "react": "16.13.1",
     "react-native": "0.63.4",
-    "react-native-animated-loader": "^0.0.9"
+    "react-native-animated-loader": "^0.0.9",
+    "react-native-spinkit": "^1.5.1"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",

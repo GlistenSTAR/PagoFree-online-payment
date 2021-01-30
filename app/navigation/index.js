@@ -1,28 +1,38 @@
 import React, { Component } from 'react'
-import { StyleSheet, View, ImageBackground } from 'react-native'
+import { StyleSheet, View, ImageBackground, Text } from 'react-native'
+import Splash from '../componet/splash';
 
 export default class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { visible: true };
+  }
+
+  componentDidMount() {
+    setInterval(() => {
+      this.setState({
+        visible: false
+      });
+    }, 5000);
+  }
   render() {
+    const { visible } = this.state;
+    let Content;
+    if(visible){
+      Content=(
+        <Splash />
+      )
+    } else{
+      <View>asdf</View>
+    }
+    
     return (
-      <View style={styles.container}> 
-        <ImageBackground style={styles.backgroundImage} 
-          source={require('../assets/img/splash.png')}>
-            
-        </ImageBackground>
-      </View>
-    )
+      <Splash/>
+      // {Content}
+    );
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-  },
-  backgroundImage: {
-    flex: 1,
-    width: '100%',
-    height: '100%',
-    justifyContent: 'center',
-  }
+  
 })
