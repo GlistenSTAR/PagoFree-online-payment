@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, View, ImageBackground, Text } from 'react-native'
+import { StyleSheet, Text } from 'react-native'
 import Splash from '../componet/splash';
 
 export default class App extends Component {
@@ -9,26 +9,27 @@ export default class App extends Component {
   }
 
   componentDidMount() {
-    setInterval(() => {
+    setTimeout(() => {
       this.setState({
         visible: false
       });
-    }, 5000);
+    }, 6000);
   }
   render() {
-    const { visible } = this.state;
-    let Content;
+    let { visible } = this.state, Content;
     if(visible){
-      Content=(
+      Content = (
         <Splash />
       )
     } else{
-      <View>asdf</View>
+      Content = (
+        <Text>asdf</Text>
+      )
     }
-    
     return (
-      <Splash/>
-      // {Content}
+      <>
+        { Content }
+      </>
     );
   }
 }
