@@ -20,11 +20,11 @@ const RegisterScreen = ({navigation}) => {
 
 
   const doSignup = function(){
-    setIsLoading(true);
-    var formData = new FormData();
-    formData.append("name", fullname);
-    formData.append("email", email);
-    formData.append("mobile", mobile);
+    // setIsLoading(true);
+    // var formData = new FormData();
+    // formData.append("name", fullname);
+    // formData.append("email", email);
+    // formData.append("mobile", mobile);
     // formData.append("password", password);
     // formData.append("user_name", username);
   }
