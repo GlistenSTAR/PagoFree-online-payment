@@ -25,8 +25,8 @@ const RegisterScreen = ({navigation}) => {
     formData.append("name", fullname);
     formData.append("email", email);
     formData.append("mobile", mobile);
-    formData.append("password", password);
-    formData.append("user_name", username);
+    // formData.append("password", password);
+    // formData.append("user_name", username);
   }
 
   return (
