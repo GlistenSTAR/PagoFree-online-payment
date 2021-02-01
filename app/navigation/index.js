@@ -1,6 +1,14 @@
 import React, { Component } from 'react'
-import { StyleSheet, Text } from 'react-native'
+import { StyleSheet, Text, View } from 'react-native'
 import Splash from '../componet/splash';
+
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+
+import LoginScreen from '../screens/Login';
+import RegisterScreen from '../screens/Register';
+
+const Stack = createStackNavigator();
 
 export default class App extends Component {
   constructor(props) {
@@ -23,7 +31,12 @@ export default class App extends Component {
       )
     } else{
       Content = (
-        <Text>asdf</Text>
+        <NavigationContainer>
+          <Stack.Navigator initialRouteName="Login">
+            <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }}/>
+            <Stack.Screen name="Register" component={RegisterScreen} options={{ headerShown: false }}/>
+          </Stack.Navigator>
+        </NavigationContainer>
       )
     }
     return (
@@ -34,6 +47,3 @@ export default class App extends Component {
   }
 }
 
-const styles = StyleSheet.create({
-  
-})
