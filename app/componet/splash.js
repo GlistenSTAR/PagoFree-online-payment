@@ -16,7 +16,6 @@ export default class Splash extends Component {
           speed={1.5}
           overlayColor='rgba(255, 255, 255, 0)'
         >
-          <Text style={styles.loadtext}>Cargando...</Text>
         </AnimatedLoader>
       </View>
     )

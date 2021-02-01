@@ -44,7 +44,6 @@ export default class Item extends Component{
     }
 
     onActive(){
-        console.log("item clicked");
         this.inputInstance.focus();
     }
 
@@ -68,7 +67,7 @@ export default class Item extends Component{
                         </Animated.View>                   
                         {this.props.forgot?
                             (<TouchableOpacity style={styles.forgot_btn}>
-                                <Text style={styles.forgot_btn_text}>FORGOT</Text>
+                                <Text style={styles.forgot_btn_text}>OLVIDÓ</Text>
                             </TouchableOpacity>)                    
                             :null}
                     </View>

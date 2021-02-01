@@ -2,9 +2,10 @@ import * as React from 'react';
 import { useState } from 'react';
 import { StyleSheet, Image, TouchableOpacity, Dimensions, ScrollView, Alert, Text,View, ActivityIndicator } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
-// import Item from '../componet/item';
+import Item from '../componet/item';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+
 import { API_SERVER_URL } from '../app_config';
-// import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const deviceSize = Dimensions.get("window");
 
@@ -14,97 +15,97 @@ const Login = ({navigation}) => {
     const [isLoading, setIsLoading] = useState(false);
 
     const doLogin = function(){
-        // setIsLoading(true);
-        // console.log(email);
-        // var formData = new FormData();
-        // formData.append("email", email);
-        // formData.append("password", password);
-        // fetch(API_SERVER_URL + "auth/login", {
-        // method: 'POST',
-        // body: formData
-        // })
-        // .then(res => res.json())
-        // .then(data => {    
-        //   setIsLoading(false);
-        // if(data.success == true){
-        //     try {
-        //     AsyncStorage.setItem(
-        //         'token',
-        //         data.data.token
-        //     );
-        //     AsyncStorage.setItem(
-        //         'user',
-        //         JSON.stringify(data.data.user)
-        //     );
-        //     } catch (error) {          
-        //     }
-        //     navigation.push('Main');
-        // }else{
-        //   setIsLoading(false);
-        //     Alert.alert(
-        //     "Login Failed!",
-        //     "Email or Password don't match.",
-        //     [
-        //         { text: 'OK', onPress: () => {}}
-        //     ]);
-        // }
-        // })
-        // .catch(err => {
-        // console.log("Login API error", err);
-        // Alert.alert(
-        //     "Login Failed!",
-        //     "Please check Network or Wifi.",
-        //     [
-        //     { text: 'OK', onPress: () => {}}
-        //     ]);
-        // });
+      setIsLoading(true);
+      var formData = new FormData();
+      formData.append("email", email);
+      formData.append("password", password);
+      if(email=="test@gmail.com"&&password=="123456"){
+        navigation.push('Main');
+      } else {
+        setIsLoading(false);
+            Alert.alert(
+            "¡Error de inicio de sesion!",
+            "El correo electrónico o la contraseña no coinciden.",
+            [
+                { text: 'OK', onPress: () => {}}
+            ]);
+        
+      }
     }
 
     return (
       <View>
-        {/* <ScrollView>
+        <ScrollView>
             <View style={styles.container}>
-              <Image source={require('../assets/images/top.png')} style={styles.top}/>
-              <Text style={styles.txt_login}>Login</Text>
-              <Text style={styles.txt_desc}>Please sign in to continue</Text>
-              <View style={styles.item_email}>
-                <Item icon="mail-outline"  cplaceholder="EMAIL" value={email} onChangeText={text=>setEmail(text)}/>
-              </View>
-              <View style={styles.item_email}>
-                <Item icon="lock-outline"  cplaceholder="PASSWORD" secureTextEntry={true} forgot={true} value={password} onChangeText={text=>setPassword(text)}/> 
-              </View>
-              <View style={styles.btn_wrapper}>
-                  <TouchableOpacity onPress={doLogin} activeOpacity={0.8}>
-                    <View
-                        style={styles.login_btn}>
-                        <Text
-                          style={styles.login_btn_text}>
-                          LOGIN                
-                        </Text>
-                        <Ionicons name="md-arrow-forward" size={32} color="white"/>
-                    </View>
-                  </TouchableOpacity>
-              </View>
-              <View style={styles.bottom_wrapper}>
-                <Text>
-                    Don't have an account?
-                </Text>         
-                <TouchableOpacity onPress={() => navigation.push('Register')}>
-                  <Text style={styles.signup_btn_text}>
-                    Sign up
-                  </Text>
-                </TouchableOpacity>         
-              </View>       
+              <Text style={styles.txt_login}>INICIAR SESIÓN</Text>
+              <View
+                style={{
+                  borderBottomColor: 'rgb(163, 162, 162)',
+                  borderBottomWidth: 1,
+                }}
+              />
+              <View 
+                style={{
+                  borderColor:"rgb(163, 162, 162)", 
+                  borderWidth:2,
+                  padding : 20,
+                  shadowColor: "red",
+                  shadowOpacity: 0.8,
+                  shadowRadius: 8,
+                  shadowOffset: {
+                    height: 1,
+                    width: 1
+                  },
+                  marginTop:10, 
+                  borderRadius:10
+                }}>
+
+                <Image source={require('../assets/img/logo.png')} style={styles.top}/>
+                <Text style={{textAlign:'center', color:'black', paddingTop:20, fontSize:16}}>Ingrese su correo electrónico y contraseña</Text>
+                <View
+                  style={{
+                    borderBottomColor: 'rgb(163, 162, 162)',
+                    borderBottomWidth: 1,
+                  }}
+                />
+                <View style={styles.item_email}>
+                  <Item icon="mail-outline"  cplaceholder="CORREO ELECTRÓNICO" value={email} onChangeText={text=>setEmail(text)}/>
+                </View>
+                <View style={styles.item_email}>
+                  <Item icon="lock-outline"  cplaceholder="CONTRASEÑA" secureTextEntry={true} forgot={true} value={password} onChangeText={text=>setPassword(text)}/> 
+                </View>
+                <View style={styles.btn_wrapper}>
+                    <TouchableOpacity onPress={doLogin} activeOpacity={0.8}>
+                      <View
+                          style={styles.login_btn}>
+                          <Text
+                            style={styles.login_btn_text}>
+                            Ingresá                
+                          </Text>
+                          <Ionicons name="md-arrow-forward" size={16} color="white"/>
+                      </View>
+                    </TouchableOpacity>
+                </View>
+                <View style={styles.bottom_wrapper}>
+                  <Text>
+                    ¿No tienes una cuenta?
+                  </Text>         
+                  <TouchableOpacity onPress={() => navigation.push('Register')}>
+                    <Text style={styles.signup_btn_text}>
+                      Regístrate
+                    </Text>
+                  </TouchableOpacity>         
+                </View>  
+              </View> 
             </View>
-        </ScrollView>  */}
-        {/* {
+        </ScrollView> 
+        {
         isLoading && (
             <View style={styles.loading_container}>
-              <ActivityIndicator size="large" color="black"/>  
+              <ActivityIndicator size="large" color="orange"/>  
             </View> 
           )
-        }  */}
-        <Text>login</Text>
+        } 
       </View>   
     );
 }
@@ -128,20 +129,15 @@ const styles = StyleSheet.create({
       position: 'relative'
     },
     top: {
-      width: 99 * 1.3,
-      height: 79 * 1.3,
-      position: 'absolute',
-      right: 0,
-      top: 0,
+      justifyContent:'center',
+      marginTop:20,
+      marginLeft:"auto",
+      marginRight:"auto"
     },
     txt_login: {
       fontSize: 30,
       fontWeight: 'bold',
       marginBottom: 10
-    },
-    txt_desc: {
-      fontSize: 15,
-      color: '#a8aaa9'
     },
     item_email: {
       marginTop: 20
@@ -150,7 +146,7 @@ const styles = StyleSheet.create({
     btn_wrapper: {
       alignItems: 'flex-end',
       marginTop: 10,
-      marginBottom: 50
+      marginBottom: 20
     },
   
     login_btn: {
@@ -172,15 +168,10 @@ const styles = StyleSheet.create({
       marginRight: 10
     },
     bottom_wrapper: {
-      backgroundColor: 'white',
-      position: 'absolute',
-      bottom: 0,
-      left: 0,
       flexDirection: 'row',
       width: deviceSize.width,
       textAlign: 'center',
       paddingTop: 15,
-      paddingBottom: 15,
       alignItems: 'center',
       justifyContent: 'center'
     },
@@ -192,5 +183,4 @@ const styles = StyleSheet.create({
     }
   });
   
-
 export default Login;
