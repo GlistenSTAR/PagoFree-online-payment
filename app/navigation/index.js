@@ -21,7 +21,7 @@ export default class App extends Component {
       this.setState({
         visible: false
       });
-    }, 6000);
+    }, 1000);
   }
   render() {
     let { visible } = this.state, Content;
