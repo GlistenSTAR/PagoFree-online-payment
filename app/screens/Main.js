@@ -5,6 +5,8 @@ import { Text, StyleSheet, Platform } from 'react-native';
 
 import ProfileScreen from './Profile';
 import Home from './Home';
+import Help from './Help';
+import History from './History';
 
 const Tab = createBottomTabNavigator();
 
@@ -37,7 +39,7 @@ const Main = () => {
                 tabBarLabel: ({ focused, color}) => focused?<Text style={{color: color, marginTop: 5, fontSize: 16}}>Transferir</Text>: null,
               }}
             />
-            <Tab.Screen name="History" component={ProfileScreen}
+            <Tab.Screen name="History" component={History}
             options={{
                 tabBarIcon: ({ color }) => <TabBarIcon name="history" color={color}/>,
                 tabBarLabel: ({ focused, color}) => focused?<Text style={{color: color, marginTop: 5, fontSize: 16}}>Historia</Text>: null,
@@ -49,7 +51,7 @@ const Main = () => {
                 tabBarLabel: ({ focused, color}) => focused?<Text style={{color: color, marginTop: 5, fontSize: 16}}>Mi Perfil</Text>: null,
               }}
             />
-            <Tab.Screen name="Help" component={ProfileScreen}
+            <Tab.Screen name="Help" component={Help}
             options={{
                 tabBarIcon: ({ color }) => <TabBarIcon name="help" color={color}/>,
                 tabBarLabel: ({ focused, color}) => focused?<Text style={{color: color, marginTop: 5, fontSize: 16}}>Ayuda</Text>: null,

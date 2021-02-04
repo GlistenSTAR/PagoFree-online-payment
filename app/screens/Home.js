@@ -3,21 +3,18 @@ import {
   StyleSheet, 
   Image, 
   Dimensions, 
-  SafeAreaView, 
-  FlatList, 
   ScrollView, 
   Text,
   View, 
   ActivityIndicator, 
-  ImageBackground,
-  Alert, 
-  TouchableOpacity } 
+  ImageBackground, 
+} 
   from 'react-native';
 
 import {ListItem, Avatar} from 'react-native-elements';
 import Item from '../componet/item';
-import axios from 'axios';
 
+import axios from 'axios';
 import AsyncStorage from '@react-native-community/async-storage';
 import { API_SERVER_URL } from '../app_config';
 
@@ -68,7 +65,6 @@ class Home extends Component {
         </ListItem>
       )
     }
-      
 
     render(){
       return (
