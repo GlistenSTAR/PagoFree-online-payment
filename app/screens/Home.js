@@ -2,8 +2,9 @@ import * as React from 'react';
 import { useState } from 'react';
 import { StyleSheet, Image, Dimensions, ScrollView, Text,View, ActivityIndicator, ImageBackground } from 'react-native';
 import Item from '../componet/item';
-import AsyncStorage from '@react-native-community/async-storage';
 import {ListItem} from 'react-native-elements';
+
+import AsyncStorage from '@react-native-community/async-storage';
 import { API_SERVER_URL } from '../app_config';
 
 const deviceSize = Dimensions.get("window");

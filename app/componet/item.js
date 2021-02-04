@@ -9,7 +9,7 @@ import {
   TextInput
 } from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-
+//////this icon+input field
 export default class Item extends Component{
     inputInstance = null;
 

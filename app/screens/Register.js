@@ -3,8 +3,8 @@ import { useState } from 'react';
 import {ActivityIndicator, StyleSheet, Image, TouchableOpacity, Dimensions, ScrollView, Alert, Text,View } from 'react-native';
 import Item from '../componet/item';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import AsyncStorage from '@react-native-community/async-storage';
 
+import AsyncStorage from '@react-native-community/async-storage';
 import { API_SERVER_URL } from '../app_config';
 
 const deviceSize = Dimensions.get('window');
@@ -17,7 +17,6 @@ const RegisterScreen = ({navigation}) => {
   const [mobile, setMobile] = useState("");
   const [username, setUsername] = useState("");
   const [isLoadng, setIsLoading] = useState(false);
-
 
   const doSignup = function(){
     setIsLoading(true);
@@ -108,11 +107,11 @@ const RegisterScreen = ({navigation}) => {
             </View>
         </ScrollView>
         {
-        isLoadng && (
-            <View style={styles.loading_container}>
-              <ActivityIndicator size="large" color="orange"/>  
-            </View> 
-          )
+          isLoadng && (
+              <View style={styles.loading_container}>
+                <ActivityIndicator size="large" color="orange"/>  
+              </View> 
+            )
         } 
       </View> 
   );
@@ -129,7 +128,7 @@ const styles = StyleSheet.create({
       height: deviceSize.height,
       backgroundColor: 'rgba(0,0,0,0.3)',
       zIndex: 1000
-  },
+    },
     container: {
       justifyContent: 'center',
       padding: 20,
@@ -146,20 +145,14 @@ const styles = StyleSheet.create({
       fontWeight: 'bold',
       marginBottom: 10
     },
-    txt_desc: {
-      fontSize: 15,
-      color: '#a8aaa9'
-    },
     item_email: {
       marginTop: 8
     },
-  
     btn_wrapper: {
       alignItems: 'flex-end',
       marginTop: 10,
       marginBottom: 20
     },
-  
     login_btn: {
       paddingLeft: 40,
       paddingRight: 40,
@@ -171,7 +164,6 @@ const styles = StyleSheet.create({
       flexDirection: 'row',
       backgroundColor: '#fda039'
     },
-  
     login_btn_text: {
       fontSize: 15,
       color: 'white',
@@ -191,16 +183,7 @@ const styles = StyleSheet.create({
       color: '#fca941',
       fontWeight: 'bold',
       marginLeft: 10
-    },
-  
-    header: {
-       padding: 10,
-       backgroundColor: 'transparent'
-    },
-    back_btn: {
-  
     }
 });
   
-
 export default RegisterScreen;

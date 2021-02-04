@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { useState } from 'react';
 import { StyleSheet, Image, TouchableOpacity, Dimensions, ScrollView, Alert, Text,View, ActivityIndicator } from 'react-native';
-import AsyncStorage from '@react-native-community/async-storage';
 import Item from '../componet/item';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import { API_SERVER_URL } from '../app_config';
+import AsyncStorage from '@react-native-community/async-storage';
 
 const deviceSize = Dimensions.get("window");
 
@@ -141,13 +141,11 @@ const styles = StyleSheet.create({
     item_email: {
       marginTop: 20
     },
-  
     btn_wrapper: {
       alignItems: 'flex-end',
       marginTop: 10,
       marginBottom: 20
     },
-  
     login_btn: {
       paddingLeft: 40,
       paddingRight: 40,
@@ -159,7 +157,6 @@ const styles = StyleSheet.create({
       flexDirection: 'row',
       backgroundColor: '#fda039'
     },
-  
     login_btn_text: {
       fontSize: 15,
       color: 'white',
