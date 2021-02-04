@@ -9,6 +9,7 @@ class Help extends Component {
       super(props);
       this.state={
          modalVisible:false, 
+         temp:{title:'', description:''},
          names: [
                {
                   id: 0,
@@ -33,11 +34,15 @@ class Help extends Component {
             ]
       }
    } 
-   setModalVisible = (visible) => {
-      this.setState({ modalVisible: visible });
+   setModalVisible = (visible, item) => {
+      if(visible)
+         this.setState({ modalVisible: visible, temp:item });
+      else 
+         this.setState({modalVisible: visible}); 
    }
    
    render() {
+      let temp=this.state.temp;
       return (
            <View style={styles.container}>
                 <View style={styles.smallprofile}>
@@ -64,7 +69,7 @@ class Help extends Component {
                   <TouchableOpacity
                      key = {item.id}
                      style = {styles.list}
-                     onPress = {() => this.setModalVisible(true)}>
+                     onPress = {() => this.setModalVisible(true, item)}>
                      <View style={{flex:1, flexDirection:"row"}}>
                         <View style={{width:deviceSize.width*0.2,alignItems:'center'}}>
                          <Image source={require('../assets/img/help.png')} style={styles.lefticon}/> 
@@ -77,29 +82,29 @@ class Help extends Component {
                   </TouchableOpacity>
                ))
             }
-            <Modal
-               animationType="fade"
-               transparent={true}
-               visible={this.state.modalVisible}
-               onRequestClose={() => {
-                  Alert.alert("Modal has been closed.");
-               }}
-            >
-               <View style={styles.centeredView}>
-               <View style={styles.modalView}>
-                  <Text style={styles.modalText}>Hello World!</Text>
-   
-                  <TouchableHighlight
-                     style={{ ...styles.openButton, backgroundColor: "#2196F3" }}
-                     onPress={() => {
-                     this.setModalVisible(!this.state.modalVisible);
-                     }}
-                  >
-                     <Text style={styles.textStyle}>Hide Modal</Text>
-                  </TouchableHighlight>
-               </View>
-               </View>
-            </Modal>
+         <Modal
+            animationType="fade"
+            transparent={true}
+            visible={this.state.modalVisible}
+            onRequestClose={() => {
+               Alert.alert("Modal has been closed.");
+            }}
+         >
+            <View style={styles.centeredView}>
+            <View style={styles.modalView}>
+               <Text style={{fontSize:16, color:'black'}}>{temp.title}</Text>
+               <Text style={{fontSize:14, color:'grey',textAlign: 'justify'}}>{temp.description}</Text>
+               <TouchableHighlight
+                  style={{ ...styles.openButton, backgroundColor: "#2196F3",marginTop:10, }}
+                  onPress={() => {
+                  this.setModalVisible(!this.state.modalVisible, null);
+                  }}
+               >
+                  <Text style={styles.textStyle}>Close</Text>
+               </TouchableHighlight>
+            </View>
+            </View>
+         </Modal>   
          </View>
       )
    }
@@ -167,7 +172,7 @@ const styles = StyleSheet.create ({
  },
  openButton: {
    backgroundColor: "#F194FF",
-   borderRadius: 20,
+   borderRadius: 10,
    padding: 10,
    elevation: 2
  },
