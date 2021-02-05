@@ -132,7 +132,8 @@ const styles = StyleSheet.create({
     container: {
       justifyContent: 'center',
       padding: 20,
-      position: 'relative'
+      position: 'relative',
+      backgroundColor:'white'
     },
     top: {
       justifyContent:'center',
@@ -146,7 +147,8 @@ const styles = StyleSheet.create({
       marginBottom: 10
     },
     item_email: {
-      marginTop: 8
+      marginTop: 8,
+      borderColor:'black'
     },
     btn_wrapper: {
       alignItems: 'flex-end',

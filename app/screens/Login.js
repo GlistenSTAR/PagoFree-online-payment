@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { StyleSheet, Image, TouchableOpacity, Dimensions, ScrollView, Alert, Text,View, ActivityIndicator } from 'react-native';
 import Item from '../componet/item';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import {Card} from 'react-native-shadow-cards';
 
 import { API_SERVER_URL } from '../app_config';
 import AsyncStorage from '@react-native-community/async-storage';
@@ -43,20 +44,12 @@ const Login = ({navigation}) => {
                   borderBottomWidth: 1,
                 }}
               />
-              <View 
+              <Card 
                 style={{
                   borderColor:"rgb(163, 162, 162)", 
-                  borderWidth:2,
                   padding : 20,
-                  shadowColor: "red",
-                  shadowOpacity: 0.8,
-                  shadowRadius: 8,
-                  shadowOffset: {
-                    height: 1,
-                    width: 1
-                  },
-                  marginTop:10, 
-                  borderRadius:10
+                  marginTop:30, 
+                  borderRadius:10,
                 }}>
 
                 <Image source={require('../assets/img/logo.png')} style={styles.top}/>
@@ -95,7 +88,7 @@ const Login = ({navigation}) => {
                     </Text>
                   </TouchableOpacity>         
                 </View>  
-              </View> 
+              </Card> 
             </View>
         </ScrollView> 
         {
@@ -125,21 +118,21 @@ const styles = StyleSheet.create({
       height: deviceSize.height,
       justifyContent: 'center',
       padding: 20,
-      position: 'relative'
+      position: 'relative',
+      backgroundColor:'white'
     },
     top: {
-      justifyContent:'center',
-      marginTop:20,
-      marginLeft:"auto",
-      marginRight:"auto"
+      marginTop:20,      
+      marginBottom:20,
+      marginRight:'auto',
+      marginLeft:'auto'
     },
     txt_login: {
       fontSize: 30,
-      fontWeight: 'bold',
-      marginBottom: 10
+      fontWeight: 'bold'
     },
     item_email: {
-      marginTop: 20
+      marginTop: 15
     },
     btn_wrapper: {
       alignItems: 'flex-end',

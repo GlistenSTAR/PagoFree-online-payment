@@ -10,6 +10,7 @@ class Help extends Component {
       this.state={
          modalVisible:false, 
          temp:{title:'', description:''},
+         search:'',
          names: [
                {
                   id: 0,

@@ -7,6 +7,7 @@ import ProfileScreen from './Profile';
 import Home from './Home';
 import Help from './Help';
 import History from './History';
+import Send from './Send';
 
 const Tab = createBottomTabNavigator();
 
@@ -33,7 +34,7 @@ const Main = () => {
                 tabBarLabel: ({ focused, color}) => focused?<Text style={{color: color, marginTop: 5, fontSize: 14}}>QR Scan</Text>: null,
               }}
             />
-            <Tab.Screen name="Send" component={ProfileScreen}
+            <Tab.Screen name="Send" component={Send}
             options={{
                 tabBarIcon: ({ color }) => <TabBarIcon name="outgoing-mail" color={color}/>,
                 tabBarLabel: ({ focused, color}) => focused?<Text style={{color: color, marginTop: 5, fontSize: 16}}>Transferir</Text>: null,
