@@ -86,8 +86,9 @@ const styles = StyleSheet.create({
         backgroundColor: 'white'
     },
     container_normal: {
-        borderBottomWidth: 1,
-        borderBottomColor: '#e9e9e9'       
+        borderWidth: 1,
+        borderColor: '#e9e9e9',
+        borderRadius:15       
     },
 
     container_active: {
@@ -98,9 +99,9 @@ const styles = StyleSheet.create({
         },
         shadowColor: 'black',
         shadowOpacity: 0.1,
-        textShadowRadius: 3
+        textShadowRadius: 3,
+        borderRadius:15
     },
-    
     icon: {
         width: 40,    
         justifyContent: 'center',

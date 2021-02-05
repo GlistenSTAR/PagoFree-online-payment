@@ -116,7 +116,8 @@ const styles = StyleSheet.create ({
   container: {   
     flex: 1,
     padding: 20,
-    position: 'relative'
+    position: 'relative',
+    backgroundColor:'white'
   },
   txt_login: {
     marginTop:30,

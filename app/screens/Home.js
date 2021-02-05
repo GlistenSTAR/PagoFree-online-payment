@@ -144,12 +144,13 @@ const styles = StyleSheet.create({
       top:10,
       right:20,
       bottom:0,
-      textAlign:'center'
+      textAlign:'center',
     },
     container: {   
       flex: 1,
       padding: 20,
-      position: 'relative'
+      position: 'relative',
+      backgroundColor:'white'
     },
     top: {
       width:50,
