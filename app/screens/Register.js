@@ -3,6 +3,7 @@ import { useState } from 'react';
 import {ActivityIndicator, StyleSheet, Image, TouchableOpacity, Dimensions, ScrollView, Alert, Text,View } from 'react-native';
 import Item from '../componet/item';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import {Card} from 'react-native-shadow-cards';
 
 import AsyncStorage from '@react-native-community/async-storage';
 import { API_SERVER_URL } from '../app_config';
@@ -29,91 +30,83 @@ const RegisterScreen = ({navigation}) => {
   }
 
   return (
-    <View>
-        <ScrollView>
-            <View style={styles.container}>
-              <Text style={styles.txt_login}>CONTRATAR</Text>
-              <View
-                style={{
-                  borderBottomColor: 'rgb(163, 162, 162)',
-                  borderBottomWidth: 1,
-                }}
-              />
-              <View 
-                style={{
-                  borderColor:"rgb(163, 162, 162)", 
-                  borderWidth:2,
-                  padding : 20,
-                  shadowColor: "red",
-                  shadowOpacity: 0.8,
-                  shadowRadius: 8,
-                  shadowOffset: {
-                    height: 1,
-                    width: 1
-                  },
-                  marginTop:10, 
-                  borderRadius:10
-                }}>
+    <>
+      <ScrollView>
+        <View style={styles.container}>
+          <Text style={styles.txt_login}>CONTRATAR</Text>
+          <View
+            style={{
+              borderBottomColor: 'rgb(163, 162, 162)',
+              borderBottomWidth: 1,
+            }}
+          />
+          <Card 
+            style={{
+              padding : 20,
+              marginTop:10, 
+              borderRadius:10,
+              justifyContent:'center'
+          }}>
 
-                <Image source={require('../assets/img/logo.png')} style={styles.top}/>
-                <Text style={{ color:'black', paddingTop:20, fontSize:16}}>Crear una cuenta</Text>
-                <View
-                  style={{
-                    borderBottomColor: 'rgb(163, 162, 162)',
-                    borderBottomWidth: 1,
-                  }}
-                />
-                <View style={styles.item_email}>
-                  <Item icon="person-outline" cplaceholder="NOMBRE COMPLETO" value={fullname} onChangeText={text=>setFullName(text)}/>
-                </View>
-                <View style={styles.item_email}>
-                  <Item icon="person-outline"  cplaceholder="NOMBRE DE USUARIO" value={username} onChangeText={text=>setUsername(text)}/>
-                </View>
-                <View style={styles.item_email}>
-                  <Item icon="mail-outline"  cplaceholder="CORREO ELECTRÓNICO" value={email} onChangeText={text=>setEmail(text)}/>
-                </View>
-                <View style={styles.item_email}>
-                  <Item icon="lock-outline"  cplaceholder="CONTRASEÑA" secureTextEntry={true} value={password} onChangeText={text=>setPassword(text)}/> 
-                </View>
-                <View style={styles.item_email}> 
-                  <Item icon="lock-outline"  cplaceholder="CONFIRMAR CONTRASEÑA" secureTextEntry={true} value={confirmPassword} onChangeText={text=>setConfirmPassword(text)}/> 
-                </View>
-                <View style={styles.item_email}>
-                  <Item icon="phone-iphone" cplaceholder="NÚMERO DE TELÉFONO MÓVIL" value={mobile} onChangeText={text=>setMobile(text)} keyboardType="phone-pad"/> 
-                </View>
-                <View style={styles.btn_wrapper}>
-                    <TouchableOpacity onPress={doSignup} activeOpacity={0.8}>
-                      <View
-                          style={styles.login_btn}>
-                          <Text
-                            style={styles.login_btn_text}>
-                            Registrarse                
-                          </Text>
-                          <Ionicons name="md-arrow-forward" size={16} color="white"/>
-                      </View>
-                    </TouchableOpacity>
-                </View>
-                <View style={styles.bottom_wrapper}>
-                  <Text>
-                    Tengo una cuenta.
-                  </Text>         
-                  <TouchableOpacity onPress={() => navigation.push('Login')}>
-                    <Text style={styles.signup_btn_text}>
-                      Iniciar sesión
-                    </Text>
-                  </TouchableOpacity>         
-                </View>  
-              </View> 
+            <Image source={require('../assets/img/logo.png')} style={styles.top}/>
+            <Text style={{ color:'black',textAlign:"center", paddingTop:20, fontSize:18,}}>Crea una cuenta, por favor.</Text>
+            <View
+              style={{
+                borderBottomColor: 'rgb(163, 162, 162)',
+                borderBottomWidth: 1,
+              }}
+            />
+            <View style={styles.item_email}>
+              <Item icon="person-outline" cplaceholder="NOMBRE COMPLETO" value={fullname} onChangeText={text=>setFullName(text)}/>
             </View>
-        </ScrollView>
-        {
-          isLoadng && (
-              <View style={styles.loading_container}>
-                <ActivityIndicator size="large" color="orange"/>  
-              </View> 
-            )
-        } 
-      </View> 
+            <View style={styles.item_email}>
+              <Item icon="person-outline"  cplaceholder="NOMBRE DE USUARIO" value={username} onChangeText={text=>setUsername(text)}/>
+            </View>
+            <View style={styles.item_email}>
+              <Item icon="mail-outline"  cplaceholder="CORREO ELECTRÓNICO" value={email} onChangeText={text=>setEmail(text)}/>
+            </View>
+            <View style={styles.item_email}>
+              <Item icon="lock-outline"  cplaceholder="CONTRASEÑA" secureTextEntry={true} value={password} onChangeText={text=>setPassword(text)}/> 
+            </View>
+            <View style={styles.item_email}> 
+              <Item icon="lock-outline"  cplaceholder="CONFIRMAR CONTRASEÑA" secureTextEntry={true} value={confirmPassword} onChangeText={text=>setConfirmPassword(text)}/> 
+            </View>
+            <View style={styles.item_email}>
+              <Item icon="phone-iphone" cplaceholder="NÚMERO DE TELÉFONO MÓVIL" value={mobile} onChangeText={text=>setMobile(text)} keyboardType="phone-pad"/> 
+            </View>
+            <View style={styles.btn_wrapper}>
+                <TouchableOpacity onPress={doSignup} activeOpacity={0.8}>
+                  <View
+                      style={styles.login_btn}>
+                      <Text
+                        style={styles.login_btn_text}>
+                        Registrarse                
+                      </Text>
+                      <Ionicons name="md-arrow-forward" size={16} color="white"/>
+                  </View>
+                </TouchableOpacity>
+            </View>
+            <View style={styles.bottom_wrapper}>
+              <Text>
+                Tengo una cuenta.
+              </Text>         
+              <TouchableOpacity onPress={() => navigation.push('Login')}>
+                <Text style={styles.signup_btn_text}>
+                  Iniciar sesión
+                </Text>
+              </TouchableOpacity>         
+            </View>  
+          </Card> 
+        </View>
+      </ScrollView>
+      {
+        isLoadng && (
+            <View style={styles.loading_container}>
+              <ActivityIndicator size="large" color="orange"/>  
+            </View> 
+        )
+      } 
+    </> 
   );
 }
 
@@ -137,7 +130,8 @@ const styles = StyleSheet.create({
     },
     top: {
       justifyContent:'center',
-      marginTop:20,
+      marginTop:10,
+      marginBottom:10,
       marginLeft:"auto",
       marginRight:"auto"
     },
@@ -148,7 +142,6 @@ const styles = StyleSheet.create({
     },
     item_email: {
       marginTop: 8,
-      borderColor:'black'
     },
     btn_wrapper: {
       alignItems: 'flex-end',
