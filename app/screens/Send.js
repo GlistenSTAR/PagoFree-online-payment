@@ -1,66 +1,84 @@
-import React, { Component } from 'react'
+import React from 'react'
+import {useState} from 'react'
 import { Text, StyleSheet, View, Image, Dimensions, TouchableOpacity, ScrollView } from 'react-native'
-import {Card} from 'react-native-elements'
-const deviceSize = Dimensions.get('window');
 import Item from '../componet/item';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import { Card } from 'react-native-shadow-cards'
 
-export default class Send extends Component {
-  constructor(props){
-    super(props);
-    this.state={
-      email:'',
-    }
-  }
-  doSend = ()=>{
+const deviceSize = Dimensions.get('window');
 
+const Send = ({navigation}) =>{
+  const [email, setEmail] = useState("");
+  const [amount, setamount] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
+  const doSend = function(){
+    setIsLoading(true);
+    let formData = new FormData();
+    formData.append("email", email);
+    formData.append("amount", amount);
   }
-  render() {
-    return (
+
+  return (
+    <>
       <ScrollView>
-      <View style={styles.container}>
-        <View style={styles.smallprofile}>
-          <Image 
-            source={require('../assets/photo/user1.png')} 
-            style={styles.top}
+        <View style={styles.container}>
+          <View style={styles.smallprofile}>
+            <Image 
+              source={require('../assets/photo/user1.png')} 
+              style={styles.top}
+            />
+            <Text style={{textAlign:'center'}}>Micky</Text>
+          </View>
+          <Text style={styles.txt_login}>Transferir</Text>
+          <View
+            style={{
+              borderBottomColor: 'rgb(163, 162, 162)',
+              borderBottomWidth: 1,
+            }}
           />
-          <Text style={{textAlign:'center'}}>Micky</Text>
+          <Image source={ require('../assets/photo/send.png')} style={styles.sendimage} />
+          <Card style={{ borderRadius:10, borderColor:'black', alignItems:'center'}}>
+            <Image source={require('../assets/img/logo.png')} style={styles.logoimg}/>
+            <Text style={{
+                borderBottomColor: 'rgb(163, 162, 162)',
+                borderBottomWidth: 1,
+                fontSize:18,
+                marginLeft:20,
+                marginRight:20,
+                marginBottom:20
+              }}>Ingrese el correo electrónico y el monto del destinatario.</Text>
+            
+            <View style={styles.item_email}>
+              <Item icon="mail-outline" style={{borderRadius:20}} placeholder="CORREO ELECTRÓNICO" value={email} onChangeText={text=>setEmail(text)}/>
+            </View>
+            <View style={styles.item_email}>
+              <Item icon="attach-money" style={{borderRadius:20}} placeholder="Cantidad" value={amount} onChangeText={text=>setamount(text)}/> 
+            </View>
+            <View style={styles.btn_wrapper}>
+                <TouchableOpacity onPress={doSend} activeOpacity={0.8}>
+                  <View
+                      style={styles.login_btn}>
+                      <Text
+                        style={styles.login_btn_text}>
+                        Transferir                
+                      </Text>
+                      <Ionicons name="md-arrow-forward" size={16} color="white"/>
+                  </View>
+                </TouchableOpacity>
+            </View>
+          </Card>
         </View>
-        <Text style={styles.txt_login}>Transferir</Text>
-        <View
-          style={{
-            borderBottomColor: 'rgb(163, 162, 162)',
-            borderBottomWidth: 1,
-          }}
-        />
-        <Image source={require('../assets/photo/send.png')} style={styles.sendimage}/>
-        <View style={{borderWidth:2, borderRadius:10, borderColor:'grey', alignItems:'center', backgroundColor:'white'}}>
-          <Image source={require('../assets/img/logo.png')} style={styles.logoimg}/>
-          <Text>Enter the receiver's email and amount</Text>
-          <View style={styles.item_email}>
-            <Item icon="mail-outline" style={{borderRadius:20}} placeholder="CORREO ELECTRÓNICO" value={this.state.email} onChangeText={text=>setEmail(text)}/>
-          </View>
-          <View style={styles.item_email}>
-            <Item icon="lock-outline" style={{borderRadius:20}} placeholder="amount" secureTextEntry={true} value={this.state.amount} onChangeText={text=>setPassword(text)}/> 
-          </View>
-          <View style={styles.btn_wrapper}>
-              <TouchableOpacity onPress={this.doSend} activeOpacity={0.8}>
-                <View
-                    style={styles.login_btn}>
-                    <Text
-                      style={styles.login_btn_text}>
-                      Transferir                
-                    </Text>
-                    <Ionicons name="md-arrow-forward" size={16} color="white"/>
-                </View>
-              </TouchableOpacity>
-          </View>
-        </View>
-
-      </View>
       </ScrollView>
-    )
-  }
+      {
+        isLoading && (
+          <View style={styles.loading_container}>
+            <ActivityIndicator size="large" color="orange"/>  
+          </View> 
+        )
+      } 
+    </>
+  )
 }
 
 const styles = StyleSheet.create({
@@ -74,6 +92,7 @@ const styles = StyleSheet.create({
     marginTop:30,
     fontSize: 30,
     fontWeight: 'bold',
+    marginLeft:20
   },
   smallprofile:{
     position:'absolute',
@@ -106,7 +125,7 @@ const styles = StyleSheet.create({
   logoimg:{
     marginLeft:'auto',
     marginRight:'auto',
-    margin:10
+    margin:20,
   },
   login_btn: {
     paddingLeft: 40,
@@ -127,10 +146,11 @@ const styles = StyleSheet.create({
   },
   btn_wrapper: {
     alignItems: 'center',
-    marginTop: 10,
     marginBottom: 20
   },
   item_email:{
     width:deviceSize.width*0.85
   }
 })
+
+export default Send;

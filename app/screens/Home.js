@@ -69,7 +69,7 @@ class Home extends Component {
     render(){
       return (
         <>
-          <ScrollView style={{flex: 1}}>
+          <ScrollView style={{flex: 1, backgroundColor:'white'}}>
               <View style={styles.container}>
                 <View style={styles.smallprofile}>
                   <Image 
