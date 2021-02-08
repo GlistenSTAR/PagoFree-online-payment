@@ -14,8 +14,8 @@ class Help extends Component {
          names: [
                {
                   id: 0,
-                  title: 'Qué es Pago free ? Como desarrollarlo',
-                  description:'Aplicación para smartphones que permita  realizar pagos, transferencias y compartir dinero de forma inmediata sin necesidad de contar con tarjetas bancarias para realizar las operaciones. Sin gastos, segura y fácil de utilizar, la app permitir  pagar con código QR en los locales adheridos.'
+                  title: 'Qué es Pago free ?',
+                  description:'Aplicación para smartphones e iOS que permita  realizar pagos, transferencias y compartir dinero de forma inmediata sin necesidad de contar con tarjetas bancarias para realizar las operaciones. Sin gastos, segura y fácil de utilizar, la app permite pagar con código QR en los locales adheridos.'
                },
                {
                   id: 1,
@@ -25,7 +25,7 @@ class Help extends Component {
                {
                   id: 2,
                   title: 'Qué  permite pagar ?',
-                  description:'Con Pago Free poder realizar transferencias a otros usuarios de forma inmediata , que  se sumen servicios de pagos online, pagos a comercios físicos , empresas  y  adherir otras funcionalidades que el desarrollador vea conveniente.'
+                  description:'Con Pago Free poder realizar transferencias a otros usuarios de forma inmediata , que  se sumen servicios de pagos online, pagos a comercios físicos , empresas  y  adherir otras servicios.'
                },
                {
                   id: 3,
@@ -87,13 +87,10 @@ class Help extends Component {
             animationType="fade"
             transparent={true}
             visible={this.state.modalVisible}
-            onRequestClose={() => {
-               Alert.alert("Modal has been closed.");
-            }}
          >
             <View style={styles.centeredView}>
             <View style={styles.modalView}>
-               <Text style={{fontSize:16, color:'black'}}>{temp.title}</Text>
+               <Text style={{fontSize:16, color:'black', marginBottom:10}}>{temp.title}</Text>
                <Text style={{fontSize:14, color:'grey',textAlign: 'justify'}}>{temp.description}</Text>
                <TouchableHighlight
                   style={{ ...styles.openButton, backgroundColor: "#2196F3",marginTop:10, }}
@@ -101,7 +98,7 @@ class Help extends Component {
                   this.setModalVisible(!this.state.modalVisible, null);
                   }}
                >
-                  <Text style={styles.textStyle}>Close</Text>
+                  <Text style={styles.textStyle}>Cerrar</Text>
                </TouchableHighlight>
             </View>
             </View>

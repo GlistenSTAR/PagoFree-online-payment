@@ -78,36 +78,25 @@ class Home extends Component {
                   />
                   <Text style={{textAlign:'center'}}>Micky</Text>
                 </View>
-                <Text style={styles.txt_login}>Hogar</Text>
+                <Image source={require('../assets/img/logoletter1.png')} style={styles.txt_login}></Image>
                 <View
                   style={{
                     borderBottomColor: 'rgb(163, 162, 162)',
                     borderBottomWidth: 1,
                   }}
                 />
-                <View>
-                  <View style={{marginTop:5}}>
-                    <Item icon="search"  placeholder="Buscar" value={this.state.search} onChangeText={text=>setsearch(text)} style={{borderRadius:50}}/>
-                  </View>  
-                </View>
                 <ImageBackground 
                   source={require('../assets/img/coinsback.jpg')} 
                   imageStyle={{ borderRadius: 15}} 
                   style={styles.freecoinback}
                 >
+                  {/* <Text style={{fontSize:24, padding:15,  textAlign:'center', fontFamily:'blod'}}><Text style={{color:"blue"}}>PagoFree</Text> es una aplicación de escaneo rápido de QR.</Text> */}
                   <Text style={{ color:'white', fontSize:24, marginTop:'auto',marginBottom:'auto', textAlign:'center', backgroundColor:'rgba(0,0,0,0.4)'}}>Freecoin tiene un precio de 50$ ahora.</Text>  
                 </ImageBackground>
   
                 <View>
                   <Text style={{fontSize:24, padding:10, marginTop:10, borderBottomColor:'rgba(0,0,0,0.2)', borderBottomWidth:1}}>Reciente Historia</Text>
                 </View> 
-                {/* <View style={{flex: 1}}>
-                  <FlatList
-                    keyExtractor={this.keyExtractor}
-                    data={this.state.list}
-                    renderItem={this.renderItem}                    
-                  />  
-                </View> */}
                 {
                   this.state.list.map((item, index) => {
                     return this.renderItem(item, index) 
@@ -160,9 +149,9 @@ const styles = StyleSheet.create({
       borderColor:'orange',
     },
     txt_login: {
-      marginTop:30,
-      fontSize: 30,
-      fontWeight: 'bold',
+      width:deviceSize.width*0.6,
+      height:deviceSize.width*0.2,
+      marginBottom:10
     },
     freecoinback:{
       height:200,

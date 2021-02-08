@@ -4,6 +4,7 @@ import Splash from '../componet/splash';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
+import FirstScreen from '../screens/FirstScreen';
 import LoginScreen from '../screens/Login';
 import RegisterScreen from '../screens/Register';
 import MainScreen from '../screens/Main';
@@ -21,7 +22,7 @@ export default class App extends Component {
       this.setState({
         visible: false
       });
-    }, 1000);
+    }, 5000);
   }
   render() {
     let { visible } = this.state, Content;
@@ -32,7 +33,8 @@ export default class App extends Component {
     } else{
       Content = (
         <NavigationContainer>
-          <Stack.Navigator initialRouteName="Login">
+          <Stack.Navigator initialRouteName="FirstScreen">
+            <Stack.Screen name="FirstScreen" component={FirstScreen} options={{ headerShown: false }}/>
             <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }}/>
             <Stack.Screen name="Register" component={RegisterScreen} options={{ headerShown: false }}/>
             <Stack.Screen name="Main" component={MainScreen} options={{ headerShown: false }}/>
