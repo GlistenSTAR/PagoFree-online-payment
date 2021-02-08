@@ -20,14 +20,16 @@ class History extends Component {
               name: 'WWW.google.com',
               url: 'https://www.kaspersky.com/content/en-global/images/repository/isc/2020/9910/a-guide-to-qr-codes-and-how-to-scan-qr-codes-2.png',
               subtitle: 'Zapatos 31-Jan-2021',
-              date:'31-Jan-2021'
+              date:'31-Jan-2021',
+              amount:'-30 $'
             },
             {
               id: 2,
               name: 'Chris Jackson',
               url: 'https://www.w3schools.com/w3images/avatar2.png',
               subtitle: 'Vice Chairman',
-              date:"31-Jan-2021"
+              date:"31-Jan-2021",
+              amount:'+100 $'
             },
             ]
       }
@@ -76,7 +78,9 @@ class History extends Component {
                          <Text style={{fontSize:16, color:'black'}}>{item.name}</Text>
                          <Text style={{fontSize:14, color:'grey', flexShrink: 1}} numberOfLines={2}>{item.subtitle}</Text>
                         </View>
-                        <View style={styles.deleteicon}><MaterialIcons name="delete-outline" size={32} color="orange"/></View>
+                        <View style={styles.deleteicon}>
+                          <Text style={{fontSize:22}}>{item.amount}</Text>
+                        </View>
                      </View>
                   </TouchableOpacity>
                ))
@@ -130,10 +134,8 @@ const styles = StyleSheet.create ({
    list: {
       marginTop:5,
       height:80,
-      backgroundColor: 'transparent',
-      alignItems: 'center',
       borderBottomWidth:1,
-      padding:20
+      borderColor:'grey'
    },
    top: {
     width:50,
@@ -143,7 +145,8 @@ const styles = StyleSheet.create ({
     borderColor:'orange',
   },
   lefticon:{
-    marginTop:'auto', marginBottom:'auto',
+    marginTop:'auto', 
+    marginBottom:'auto',
     width:50,
     height:50,
   },
@@ -185,10 +188,8 @@ const styles = StyleSheet.create ({
    textAlign: "center"
  },
  deleteicon:{
-  alignItems: 'center',
-  justifyContent: 'flex-start',
-  marginTop:"auto",
-  marginBottom:"auto",
-  paddingEnd:10,
+  position:'absolute',
+  right:5,
+  marginTop: 20,
  }
 })

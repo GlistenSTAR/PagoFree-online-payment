@@ -78,13 +78,16 @@ class Home extends Component {
                   />
                   <Text style={{textAlign:'center'}}>Micky</Text>
                 </View>
-                <Image source={require('../assets/img/logoletter1.png')} style={styles.txt_login}></Image>
+                <View style={{marginTop:30}}><Image source={require('../assets/img/logoletter1.png')} style={styles.txt_login}></Image></View>
                 <View
                   style={{
                     borderBottomColor: 'rgb(163, 162, 162)',
                     borderBottomWidth: 1,
                   }}
                 />
+                <View style={{margin:10}}>
+                  <Text style={{fontSize:32}}>Good morning, Micky</Text>
+                </View>
                 <ImageBackground 
                   source={require('../assets/img/coinsback.jpg')} 
                   imageStyle={{ borderRadius: 15}} 
@@ -151,7 +154,8 @@ const styles = StyleSheet.create({
     txt_login: {
       width:deviceSize.width*0.6,
       height:deviceSize.width*0.2,
-      marginBottom:10
+      marginBottom:15,
+      paddingTop:10
     },
     freecoinback:{
       height:200,

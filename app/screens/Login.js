@@ -11,8 +11,8 @@ import AsyncStorage from '@react-native-community/async-storage';
 const deviceSize = Dimensions.get("window");
 
 const Login = ({navigation}) => {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const [email, setEmail] = useState("test@gmail.com");
+    const [password, setPassword] = useState("123456");
     const [isLoading, setIsLoading] = useState(false);
 
     const doLogin = function(){

@@ -5,7 +5,8 @@ import {
     StyleSheet,
     Dimensions,
 } from "react-native";
-import {Button} from 'react-native-elements'
+import { Button } from 'react-native-elements';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import { SliderBox } from "react-native-image-slider-box";
 const deviceSize = Dimensions.get('window');
 
@@ -46,12 +47,28 @@ class FirstScreen extends Component {
             </SliderBox>
             <View style={{flexDirection: "row", position:'absolute', right:0}}>
               <Button
-                onPress={this.onLogin}
+                  icon={
+                    <Icon
+                      name="sign-in"
+                      size={18}
+                      color="orange"
+                      style={{marginRight:5}}
+                      />
+                  }
                 title="Login"
                 titleStyle={styles.font}
                 buttonStyle={styles.button}
+                onPress={this.onLogin}
               />
               <Button
+                icon={
+                  <Icon
+                    name="pencil-square-o"
+                    size={18}
+                    color="orange"
+                    style={{marginRight:5}}
+                    />
+                }
                 onPress={this.onRegister}
                 title="Register"
                 titleStyle={styles.font}
@@ -80,6 +97,6 @@ const styles = StyleSheet.create({
     },
     font:{
         color: "orange",
-        fontSize: 24,
+        fontSize: 18,
     }
 });
