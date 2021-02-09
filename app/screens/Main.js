@@ -8,6 +8,7 @@ import Home from './Home';
 import Help from './Help';
 import History from './History';
 import Send from './Send';
+import QRscan from './QRscan';
 
 const Tab = createBottomTabNavigator();
 
@@ -28,7 +29,7 @@ const Main = () => {
                 tabBarLabel: ({ focused, color}) => focused?<Text style={{color: color, marginTop: 5, fontSize: 14}}>Hogar</Text>: null,
               }}
             />
-            <Tab.Screen name="QRscan" component={ProfileScreen}
+            <Tab.Screen name="QRscan" component={QRscan}
             options={{
                 tabBarIcon: ({ color }) => <TabBarIcon name="qr-code-scanner" color={color}/>,
                 tabBarLabel: ({ focused, color}) => focused?<Text style={{color: color, marginTop: 5, fontSize: 14}}>QR Scan</Text>: null,
