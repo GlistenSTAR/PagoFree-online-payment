@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useState } from 'react';
-import {ActivityIndicator, StyleSheet, Image, TouchableOpacity, Dimensions, ScrollView, Alert, Text,View } from 'react-native';
+import {ActivityIndicator, StyleSheet, Image, TouchableOpacity, Dimensions, ScrollView, Text,View } from 'react-native';
+import {Icon} from 'react-native-elements'
 import Item from '../componet/item';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {Card} from 'react-native-shadow-cards';
@@ -33,7 +34,9 @@ const RegisterScreen = ({navigation}) => {
     <>
       <ScrollView>
         <View style={styles.container}>
-          <Text style={styles.txt_login}>CONTRATAR</Text>
+          <View>
+            <Text style={styles.txt_login}>CONTRATAR</Text>
+          </View>
           <View
             style={{
               borderBottomColor: 'rgb(163, 162, 162)',
@@ -49,7 +52,7 @@ const RegisterScreen = ({navigation}) => {
           }}>
 
             <Image source={require('../assets/img/logo.png')} style={styles.top}/>
-            <Text style={{ color:'black',textAlign:"center", paddingTop:20, fontSize:18,}}>Crea una cuenta, por favor.</Text>
+            <Text style={{ color:'black',textAlign:"left", paddingTop:20,paddingLeft:10, fontSize:18,}}>Crea una cuenta, por favor.</Text>
             <View
               style={{
                 borderBottomColor: 'rgb(163, 162, 162)',

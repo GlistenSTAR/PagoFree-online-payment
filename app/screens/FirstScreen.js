@@ -15,8 +15,10 @@ class FirstScreen extends Component {
       super(props); 
       this.state = {
         images:[
-          require('../assets/img/background1-1-1.jpg'),
-          require('../assets/img/background2-1.jpg'),
+          require('../assets/img/background5-1.jpg'),
+          require('../assets/img/background3-1.jpg'),
+          require('../assets/img/background2-1-1.jpg'),
+          require('../assets/img/background4-1.jpg'),
         ]   
       };
     }
