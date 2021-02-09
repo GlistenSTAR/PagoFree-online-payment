@@ -30,7 +30,7 @@ const Profile = ({navigation}) =>{
             />
             <Text style={{textAlign:'center'}}>Micky</Text>
           </View>
-          <Text style={styles.txt_login}>Mi perfil</Text>
+          <Text style={styles.txt_login}>Editar perfil</Text>
           <View
             style={{
               borderBottomColor: 'rgb(163, 162, 162)',
@@ -77,7 +77,7 @@ const Profile = ({navigation}) =>{
                       style={styles.login_btn}>
                       <Text
                         style={styles.login_btn_text}>
-                        Transferir                
+                        Salvar                
                       </Text>
                       <Ionicons name="md-arrow-forward" size={16} color="white"/>
                   </View>
