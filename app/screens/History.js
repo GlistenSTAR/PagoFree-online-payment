@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Text, View, TouchableOpacity, StyleSheet, Image, Dimensions, Modal, TouchableHighlight } from 'react-native'
 import Item from '../componet/item';
 import { Avatar } from 'react-native-elements';
+import UserAvatar from '../componet/UserAvatar'
 import  MaterialIcons  from 'react-native-vector-icons/MaterialIcons';
 
 
@@ -45,13 +46,7 @@ class History extends Component {
       let temp=this.state.temp;
       return (
            <View style={styles.container}>
-                <View style={styles.smallprofile}>
-                  <Image 
-                    source={require('../assets/photo/user1.png')} 
-                    style={styles.top}
-                  />
-                  <Text style={{textAlign:'center'}}>Micky</Text>
-                </View>
+                <UserAvatar/>
                 <Text style={styles.txt_login}>Historia</Text>
                 <View
                   style={{
@@ -124,33 +119,18 @@ const styles = StyleSheet.create ({
     fontSize: 30,
     fontWeight: 'bold',
   },
-  smallprofile:{
-    position:'absolute',
-    top:10,
-    right:20,
-    bottom:0,
-    textAlign:'center'
-  },
    list: {
       marginTop:5,
       height:80,
       borderBottomWidth:1,
       borderColor:'grey'
    },
-   top: {
-    width:50,
-    height:50,
-    borderRadius:50,
-    borderWidth:4,
-    borderColor:'orange',
-  },
   lefticon:{
     marginTop:'auto', 
     marginBottom:'auto',
     width:50,
     height:50,
   },
-
   centeredView: {
    flex: 1,
    justifyContent: "center",

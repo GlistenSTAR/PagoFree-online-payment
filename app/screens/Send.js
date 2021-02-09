@@ -4,6 +4,7 @@ import { Text, StyleSheet, View, Image, Dimensions, TouchableOpacity, ScrollView
 import Item from '../componet/item';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Card } from 'react-native-shadow-cards'
+import UserAvatar from '../componet/UserAvatar';
 
 const deviceSize = Dimensions.get('window');
 
@@ -23,13 +24,7 @@ const Send = ({navigation}) =>{
     <>
       <ScrollView>
         <View style={styles.container}>
-          <View style={styles.smallprofile}>
-            <Image 
-              source={require('../assets/photo/user1.png')} 
-              style={styles.top}
-            />
-            <Text style={{textAlign:'center'}}>Micky</Text>
-          </View>
+          <UserAvatar/>
           <Text style={styles.txt_login}>Transferir</Text>
           <View
             style={{
@@ -94,13 +89,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginLeft:20
   },
-  smallprofile:{
-    position:'absolute',
-    top:10,
-    right:20,
-    bottom:0,
-    textAlign:'center'
-  },
    list: {
       marginTop:5,
       height:80,
@@ -108,13 +96,6 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       borderBottomWidth:1
    },
-   top: {
-    width:50,
-    height:50,
-    borderRadius:50,
-    borderWidth:4,
-    borderColor:'orange',
-  },
   sendimage:{
     width:deviceSize.width*0.9,
     height:deviceSize.height*0.25,

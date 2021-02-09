@@ -17,6 +17,7 @@ import Item from '../componet/item';
 import axios from 'axios';
 import AsyncStorage from '@react-native-community/async-storage';
 import { API_SERVER_URL } from '../app_config';
+import UserAvatar from '../componet/UserAvatar';
 
 const deviceSize = Dimensions.get("window");
 
@@ -71,13 +72,7 @@ class Home extends Component {
         <>
           <ScrollView style={{flex: 1, backgroundColor:'white'}}>
               <View style={styles.container}>
-                <View style={styles.smallprofile}>
-                  <Image 
-                    source={require('../assets/photo/user1.png')} 
-                    style={styles.top}
-                  />
-                  <Text style={{textAlign:'center'}}>Micky</Text>
-                </View>
+                <UserAvatar/>
                 <View style={{marginTop:30}}><Image source={require('../assets/img/logoletter1.png')} style={styles.txt_login}></Image></View>
                 <View
                   style={{
@@ -131,25 +126,11 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(0,0,0,0.3)',
         zIndex: 1000
     },
-    smallprofile:{
-      position:'absolute',
-      top:10,
-      right:20,
-      bottom:0,
-      textAlign:'center',
-    },
     container: {   
       flex: 1,
       padding: 20,
       position: 'relative',
       backgroundColor:'white'
-    },
-    top: {
-      width:50,
-      height:50,
-      borderRadius:50,
-      borderWidth:4,
-      borderColor:'orange',
     },
     txt_login: {
       width:deviceSize.width*0.6,

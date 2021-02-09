@@ -4,6 +4,7 @@ import { Text, StyleSheet, View, Image, Dimensions, TouchableOpacity, ScrollView
 import Item from '../componet/item';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Card } from 'react-native-shadow-cards'
+import UserAvatar from '../componet/UserAvatar';
 
 const deviceSize = Dimensions.get('window');
 
@@ -23,13 +24,7 @@ const Profile = ({navigation}) =>{
     <>
       <ScrollView>
         <View style={styles.container}>
-          <View style={styles.smallprofile}>
-            <Image 
-              source={require('../assets/photo/user1.png')} 
-              style={styles.top}
-            />
-            <Text style={{textAlign:'center'}}>Micky</Text>
-          </View>
+          <UserAvatar/>
           <Text style={styles.txt_login}>Editar perfil</Text>
           <View
             style={{
