@@ -74,7 +74,7 @@ class History extends Component {
                          <Text style={{fontSize:14, color:'grey', flexShrink: 1}} numberOfLines={2}>{item.subtitle}</Text>
                         </View>
                         <View style={styles.deleteicon}>
-                          {item.amount.slice(0,1)=="+"?<Text style={{fontSize:20, color:'rgb(50, 50, 250)'}}>{item.amount}</Text>:<Text style={{fontSize:20, color:'red'}}>{item.amount}</Text>}
+                          {item.amount.slice(0,1)=="+"?<Text style={{fontSize:18, color:'rgb(50, 50, 250)'}}>{item.amount}</Text>:<Text style={{fontSize:18, color:'red'}}>{item.amount}</Text>}
                         </View>
                      </View>
                   </TouchableOpacity>

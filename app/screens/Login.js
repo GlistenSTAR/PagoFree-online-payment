@@ -16,7 +16,7 @@ const Login = ({navigation}) => {
     const [isLoading, setIsLoading] = useState(false);
 
     const doLogin = function(){
-      setIsLoading(true);
+      // setIsLoading(true);
       var formData = new FormData();
       formData.append("email", email);
       formData.append("password", password);

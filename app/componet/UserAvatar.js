@@ -1,15 +1,21 @@
 import React from 'react'
-import { View, Text, Image, StyleSheet } from 'react-native'
+import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native'
 
-const UserAvatar = () => {
+
+const UserAvatar = ({navigation}) => {
+  const doPress = function(){
+    console.log("asdf");
+  }
   return (
-    <View style={styles.smallprofile}>
-      <Image 
-        source={require('../assets/photo/user1.png')} 
-        style={styles.top}
-      />
-      <Text style={{textAlign:'center'}}>Micky</Text>
-    </View>
+    <TouchableOpacity onPress={doPress} >
+      {/* <View style={styles.smallprofile}>
+        <Image 
+          source={require('../assets/photo/user1.png')} 
+          style={styles.top}
+        />
+        <Text style={{textAlign:'center'}}>Micky</Text>
+      </View> */}
+    </TouchableOpacity>
   )
 }
 const styles = StyleSheet.create({

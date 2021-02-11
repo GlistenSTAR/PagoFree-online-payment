@@ -12,12 +12,11 @@ import {
   from 'react-native';
 
 import {ListItem, Avatar} from 'react-native-elements';
-import Item from '../componet/item';
+import UserAvatar from '../componet/UserAvatar';
 
 import axios from 'axios';
 import AsyncStorage from '@react-native-community/async-storage';
 import { API_SERVER_URL } from '../app_config';
-import UserAvatar from '../componet/UserAvatar';
 
 const deviceSize = Dimensions.get("window");
 

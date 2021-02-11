@@ -38,7 +38,7 @@ const Main = () => {
             <Tab.Screen name="Send" component={Send}
             options={{
                 tabBarIcon: ({ color }) => <TabBarIcon name="outgoing-mail" color={color}/>,
-                tabBarLabel: ({ focused, color}) => focused?<Text style={{color: color, marginTop: 5, fontSize: 16}}>Transferir</Text>: null,
+                tabBarLabel: ({ focused, color}) => focused?<Text style={{color: color, marginTop: 5, fontSize: 14}}>Transferir</Text>: null,
               }}
             />
             <Tab.Screen name="History" component={History}

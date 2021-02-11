@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {Component} from 'react'
 import {useState} from 'react'
 import { Text, StyleSheet, View, Image, Dimensions, TouchableOpacity, ScrollView } from 'react-native'
 import Item from '../componet/item';
@@ -8,88 +8,111 @@ import UserAvatar from '../componet/UserAvatar';
 
 const deviceSize = Dimensions.get('window');
 
-const Profile = ({navigation}) =>{
-  const [email, setEmail] = useState("");
-  const [amount, setamount] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-
-  const doSend = function(){
+export default class Profile extends Component{
+  constructor(props){
+    super(props)
+    this.state={
+      email:'',
+      amount:'',
+      isLoading:false,
+      data:{}
+    }
+  }
+  componentDidMount(){
+    this.setState({
+      data:{
+        username: 'Micky',
+        fullname: 'Anton Micky',
+        email:'test@gmail.com',
+        phone:'+1234567890'
+      }
+    });
+  }
+  doSend = function(){
     setIsLoading(true);
     let formData = new FormData();
-    formData.append("email", email);
-    formData.append("amount", amount);
   }
-
-  return (
-    <>
-      <ScrollView>
-        <View style={styles.container}>
-          <UserAvatar/>
-          <Text style={styles.txt_login}>Editar perfil</Text>
-          <View
-            style={{
-              borderBottomColor: 'rgb(163, 162, 162)',
-              borderBottomWidth: 1,
-            }}
-          />
-          <Card style={{ borderRadius:10, borderColor:'black', alignItems:'center', marginTop:20}}>
-            <Image source={require('../assets/img/logo.png')} style={styles.logoimg}/>
-            <View style={{width: deviceSize.width*0.8}}>
-                <Text style={{
-                    textAlign:'left',
-                    fontSize:18,
-                }}>Cambia tu información</Text>
-            </View>
-            <View
-                style={{
-                    borderBottomColor: 'rgb(163, 162, 162)',
-                    borderBottomWidth: 1,
-                    width: deviceSize.width*0.8,
-                    marginBottom:20,
-                }}
-            />
+  render(){
+    return (
+      <>
+        <ScrollView>
+          <View style={styles.container}>
+            <UserAvatar/>
+            <Text style={styles.txt_login}>Mi perfil</Text>
             <View
               style={{
                 borderBottomColor: 'rgb(163, 162, 162)',
                 borderBottomWidth: 1,
               }}
             />
-            <View style={styles.item_email}>
-              <Item icon="person-outline" style={{borderRadius:20}} placeholder="CORREO ELECTRÓNICO" value={email} onChangeText={text=>setEmail(text)}/>
-            </View>
-            <View style={styles.item_email}>
-              <Item icon="lock-outline" style={{borderRadius:20}} placeholder="CORREO ELECTRÓNICO" value={email} onChangeText={text=>setEmail(text)}/>
-            </View>
-            <View style={styles.item_email}>
-              <Item icon="lock-outline" style={{borderRadius:20}} placeholder="CORREO ELECTRÓNICO" value={email} onChangeText={text=>setEmail(text)}/>
-            </View>
-            <View style={styles.item_email}>
-              <Item icon="phone-iphone" style={{borderRadius:20}} placeholder="CORREO ELECTRÓNICO" value={email} onChangeText={text=>setEmail(text)}/>
-            </View>
-            <View style={styles.btn_wrapper}>
-                <TouchableOpacity onPress={doSend} activeOpacity={0.8}>
-                  <View
-                      style={styles.login_btn}>
-                      <Text
-                        style={styles.login_btn_text}>
-                        Salvar                
-                      </Text>
-                      <Ionicons name="md-arrow-forward" size={16} color="white"/>
-                  </View>
-                </TouchableOpacity>
-            </View>
-          </Card>
-        </View>
-      </ScrollView>
-      {
-        isLoading && (
-          <View style={styles.loading_container}>
-            <ActivityIndicator size="large" color="orange"/>  
-          </View> 
-        )
-      } 
-    </>
-  )
+            <Card style={{ borderRadius:10, borderColor:'black', alignItems:'center', marginTop:20}}>
+              <Image source={require('../assets/img/logo.png')} style={styles.logoimg}/>
+              <View style={{width: deviceSize.width*0.8}}>
+                  <Text style={{
+                      textAlign:'left',
+                      fontSize:20,
+                  }}>Mi informacion</Text>
+              </View>
+              <View
+                  style={{
+                      borderBottomColor: 'rgb(163, 162, 162)',
+                      borderBottomWidth: 1,
+                      width: deviceSize.width*0.8,
+                      marginBottom:20,
+                  }}
+              />
+              <View
+                style={{
+                  borderBottomColor: 'rgb(163, 162, 162)',
+                  borderBottomWidth: 1,
+                }}
+              />
+              <View style={{width:deviceSize.width*0.8}}>
+                <Text style={styles.text}>
+                  <Text style={styles.texttitle}>Nombre de usuario: </Text>
+                  <Text style={{alignContent:'flex-end'}}>{this.state.data.username}</Text>
+                </Text>
+                <Text style={styles.text}><Text style={styles.texttitle}>Nombre completo: </Text><Text>{this.state.data.fullname}</Text></Text>
+                <Text style={styles.text}><Text style={styles.texttitle}>e-mail: </Text><Text>{this.state.data.email}</Text></Text>
+                <Text style={styles.text}><Text style={styles.texttitle}>número de teléfono: </Text><Text>{this.state.data.phone}</Text></Text>
+              </View>
+              {/* <View style={styles.item_email}>
+                <Item icon="person-outline" style={{borderRadius:20}} placeholder="CORREO ELECTRÓNICO" value={email} onChangeText={text=>setEmail(text)}/>
+              </View>
+              <View style={styles.item_email}>
+                <Item icon="lock-outline" style={{borderRadius:20}} placeholder="CORREO ELECTRÓNICO" value={email} onChangeText={text=>setEmail(text)}/>
+              </View>
+              <View style={styles.item_email}>
+                <Item icon="lock-outline" style={{borderRadius:20}} placeholder="CORREO ELECTRÓNICO" value={email} onChangeText={text=>setEmail(text)}/>
+              </View>
+              <View style={styles.item_email}>
+                <Item icon="phone-iphone" style={{borderRadius:20}} placeholder="CORREO ELECTRÓNICO" value={email} onChangeText={text=>setEmail(text)}/>
+              </View> */}
+              <View style={styles.btn_wrapper}>
+                  <TouchableOpacity onPress={this.doSend} activeOpacity={0.8}>
+                    <View
+                        style={styles.login_btn}>
+                        <Text
+                          style={styles.login_btn_text}>
+                          Salvar                
+                        </Text>
+                        <Ionicons name="md-arrow-forward" size={16} color="white"/>
+                    </View>
+                  </TouchableOpacity>
+              </View>
+            </Card>
+          </View>
+        </ScrollView>
+        {
+          this.state.isLoading && (
+            <View style={styles.loading_container}>
+              <ActivityIndicator size="large" color="orange"/>  
+            </View> 
+          )
+        } 
+      </>
+    )
+  }
 }
 
 const styles = StyleSheet.create({
@@ -162,7 +185,16 @@ const styles = StyleSheet.create({
   },
   item_email:{
     width:deviceSize.width*0.85
+  },
+  text:{
+    fontSize:16,
+    color:'grey',
+    paddingTop:15,
+  },
+  texttitle:{
+    color:'black',
+    width:200,
   }
 })
 
-export default Profile;
+
