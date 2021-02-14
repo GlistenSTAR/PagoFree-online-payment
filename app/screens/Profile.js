@@ -8,21 +8,21 @@ import UserAvatar from '../componet/UserAvatar';
 const deviceSize = Dimensions.get('window');
 
 const Profile = ({navigation}) => {
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState("test@gmail.com");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [username, setUsername] = useState('');
-  const [fullname, setFullname] =useState('');
-  const [phone, setPhone] = useState('');
+  const [username, setUsername] = useState('micky');
+  const [fullname, setFullname] =useState('antonio micky');
+  const [phone, setPhone] = useState('1234567890');
   const [cpassword, setCpassword] =useState('');
 
 
-  useEffect(() => {
-    setEmail('test@gmail.com');
-    setPhone('1234567890');
-    setUsername('micky');
-    setFullname('antonio micky');
-  }, []);
+  // useEffect(() => {
+  //   setEmail('test@gmail.com');
+  //   setPhone('1234567890');
+  //   setUsername('micky');
+  //   setFullname('antonio micky');
+  // }, []);
 
   const doSend = function(){
     setIsLoading(true);

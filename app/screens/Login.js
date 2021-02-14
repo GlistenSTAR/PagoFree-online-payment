@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { StyleSheet, Image, TouchableOpacity, Dimensions, ScrollView, Alert, Text,View, ActivityIndicator } from 'react-native';
 import Item from '../componet/item';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -11,16 +11,16 @@ import AsyncStorage from '@react-native-community/async-storage';
 const deviceSize = Dimensions.get("window");
 
 const Login = ({navigation}) => {
-    const [email, setEmail] = useState("test@gmail.com");
-    const [password, setPassword] = useState("123456");
+    const [email1, setEmail] = useState("test@gmail.com");
+    const [password1, setPassword] = useState("123456");
     const [isLoading, setIsLoading] = useState(false);
 
+
     const doLogin = function(){
-      // setIsLoading(true);
       var formData = new FormData();
-      formData.append("email", email);
-      formData.append("password", password);
-      if(email=="test@gmail.com"&&password=="123456"){
+      formData.append("email", email1);
+      formData.append("password", password1);
+      if(email1=="test@gmail.com"&&password1=="123456"){
         navigation.push('Main');
       } else {
         setIsLoading(false);
@@ -61,10 +61,10 @@ const Login = ({navigation}) => {
                   }}
                 />
                 <View style={styles.item_email}>
-                  <Item icon="mail-outline"  cplaceholder="CORREO ELECTRÓNICO" value={email} onChangeText={text=>setEmail(text)}/>
+                  <Item icon="mail-outline"  cplaceholder="CORREO ELECTRÓNICO" value={email1} onChangeText={text=>setEmail(text)}/>
                 </View>
                 <View style={styles.item_email}>
-                  <Item icon="lock-outline"  cplaceholder="CONTRASEÑA" secureTextEntry={true} forgot={true} value={password} onChangeText={text=>setPassword(text)}/> 
+                  <Item icon="lock-outline"  cplaceholder="CONTRASEÑA" secureTextEntry={true} forgot={true} value={password1} onChangeText={text=>setPassword(text)}/> 
                 </View>
                 <View style={styles.btn_wrapper}>
                     <TouchableOpacity onPress={doLogin} activeOpacity={0.8}>

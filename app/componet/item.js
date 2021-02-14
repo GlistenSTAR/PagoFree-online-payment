@@ -9,6 +9,7 @@ import {
   TextInput
 } from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import isEmpty from '../common/is-empty';
 //////this icon+input field
 export default class Item extends Component{
     inputInstance = null;
@@ -25,7 +26,9 @@ export default class Item extends Component{
     }
 
     componentDidMount(){
-        if(this.props.value.length>1){
+        if(!isEmpty(this.props.value)){
+        let a=1;
+        console.log(a++);
             this.onFocus();
         }
     }
