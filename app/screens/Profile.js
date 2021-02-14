@@ -1,5 +1,5 @@
-import React, {Component} from 'react'
-import {useState} from 'react'
+import * as React from 'react'
+import {useState, useEffect} from 'react'
 import { Text, StyleSheet, View, Image, Dimensions, TouchableOpacity, ScrollView } from 'react-native'
 import Item from '../componet/item';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -8,32 +8,29 @@ import UserAvatar from '../componet/UserAvatar';
 
 const deviceSize = Dimensions.get('window');
 
-export default class Profile extends Component{
-  constructor(props){
-    super(props)
-    this.state={
-      email:'',
-      amount:'',
-      isLoading:false,
-      data:{}
-    }
-  }
-  componentDidMount(){
-    this.setState({
-      data:{
-        username: 'Micky',
-        fullname: 'Anton Micky',
-        email:'test@gmail.com',
-        phone:'+1234567890'
-      }
-    });
-  }
-  doSend = function(){
+const Profile = ({navigation}) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [username, setUsername] = useState('');
+  const [fullname, setFullname] =useState('');
+  const [phone, setPhone] = useState('');
+  const [cpassword, setCpassword] =useState('');
+
+
+  useEffect(() => {
+    setEmail('test@gmail.com');
+    setPhone('1234567890');
+    setUsername('micky');
+    setFullname('antonio micky');
+  }, []);
+
+  const doSend = function(){
     setIsLoading(true);
     let formData = new FormData();
   }
-  render(){
-    return (
+
+  return (
       <>
         <ScrollView>
           <View style={styles.container}>
@@ -67,36 +64,32 @@ export default class Profile extends Component{
                   borderBottomWidth: 1,
                 }}
               />
-              <View style={{width:deviceSize.width*0.8}}>
-                <Text style={styles.text}>
-                  <Text style={styles.texttitle}>Nombre de usuario: </Text>
-                  <Text style={{alignContent:'flex-end'}}>{this.state.data.username}</Text>
-                </Text>
-                <Text style={styles.text}><Text style={styles.texttitle}>Nombre completo: </Text><Text>{this.state.data.fullname}</Text></Text>
-                <Text style={styles.text}><Text style={styles.texttitle}>e-mail: </Text><Text>{this.state.data.email}</Text></Text>
-                <Text style={styles.text}><Text style={styles.texttitle}>número de teléfono: </Text><Text>{this.state.data.phone}</Text></Text>
-              </View>
-              {/* <View style={styles.item_email}>
-                <Item icon="person-outline" style={{borderRadius:20}} placeholder="CORREO ELECTRÓNICO" value={email} onChangeText={text=>setEmail(text)}/>
+              <View style={styles.item_email}>
+                <Item icon="person-outline" style={{borderRadius:20}} cplaceholder="NOMBRE DE USUARIO" value={username} onChangeText={text=>setUsername(text)}/>
               </View>
               <View style={styles.item_email}>
-                <Item icon="lock-outline" style={{borderRadius:20}} placeholder="CORREO ELECTRÓNICO" value={email} onChangeText={text=>setEmail(text)}/>
+                <Item icon="person-outline" style={{borderRadius:20}} cplaceholder="NOMBRE COMPLETO" value={fullname} onChangeText={text=>setFullname(text)}/>
               </View>
               <View style={styles.item_email}>
-                <Item icon="lock-outline" style={{borderRadius:20}} placeholder="CORREO ELECTRÓNICO" value={email} onChangeText={text=>setEmail(text)}/>
+                <Item icon="person-outline" style={{borderRadius:20}} cplaceholder="TELÉFONO" value={email} onChangeText={text=>setEmail(text)}/>
               </View>
               <View style={styles.item_email}>
-                <Item icon="phone-iphone" style={{borderRadius:20}} placeholder="CORREO ELECTRÓNICO" value={email} onChangeText={text=>setEmail(text)}/>
-              </View> */}
+                <Item icon="phone-iphone" style={{borderRadius:20}} cplaceholder="CORREO ELECTRÓNICO" value={phone} onChangeText={text=>setEmail(text)}/>
+              </View>
+              <View style={styles.item_email}>
+                <Item icon="lock-outline" style={{borderRadius:20}} placeholder="CONTRASEÑA" value={password} onChangeText={text=>setPassword(text)}/>
+              </View>
+              <View style={styles.item_email}>
+                <Item icon="lock-outline" style={{borderRadius:20}} placeholder="CONFIRMAR CONTRASEÑA" value={cpassword} onChangeText={text=>setCpassword(text)}/>
+              </View>
               <View style={styles.btn_wrapper}>
-                  <TouchableOpacity onPress={this.doSend} activeOpacity={0.8}>
+                  <TouchableOpacity onPress={doSend} activeOpacity={0.8}>
                     <View
                         style={styles.login_btn}>
                         <Text
                           style={styles.login_btn_text}>
-                          Salvar                
+                          Edit                
                         </Text>
-                        <Ionicons name="md-arrow-forward" size={16} color="white"/>
                     </View>
                   </TouchableOpacity>
               </View>
@@ -104,7 +97,7 @@ export default class Profile extends Component{
           </View>
         </ScrollView>
         {
-          this.state.isLoading && (
+          isLoading && (
             <View style={styles.loading_container}>
               <ActivityIndicator size="large" color="orange"/>  
             </View> 
@@ -113,11 +106,11 @@ export default class Profile extends Component{
       </>
     )
   }
-}
+
+export default Profile;
 
 const styles = StyleSheet.create({
   container: {   
-    flex: 1,
     padding: 20,
     position: 'relative',
     backgroundColor:'white',
@@ -193,7 +186,8 @@ const styles = StyleSheet.create({
   },
   texttitle:{
     color:'black',
-    width:200,
+    height:20,
+    width:50,
   }
 })
 
