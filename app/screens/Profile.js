@@ -2,7 +2,6 @@ import * as React from 'react'
 import {useState, useEffect} from 'react'
 import { Text, StyleSheet, View, Image, Dimensions, TouchableOpacity, ScrollView } from 'react-native'
 import Item from '../componet/item';
-import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Card } from 'react-native-shadow-cards'
 import UserAvatar from '../componet/UserAvatar';
 

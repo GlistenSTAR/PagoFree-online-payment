@@ -15,7 +15,6 @@ export default class Item extends Component{
 
     constructor(props){
         super(props);
-
         this.state = {
             animation: new Animated.Value(0)
         };
@@ -23,6 +22,12 @@ export default class Item extends Component{
         this.onFocus = this.onFocus.bind(this);
         this.onBlur = this.onBlur.bind(this);
         this.onActive = this.onActive.bind(this);
+    }
+
+    componentDidMount(){
+        if(this.props.value.length>1){
+            this.onFocus();
+        }
     }
 
     onFocus(){
