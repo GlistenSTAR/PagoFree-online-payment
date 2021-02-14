@@ -37,6 +37,12 @@ class Home extends Component {
             avatar_url: 'https://www.w3schools.com/w3images/avatar2.png',
             subtitle: 'Vice Chairman'
           },
+          {
+            id: 3,
+            name: 'Chris Jackson',
+            avatar_url: 'https://www.w3schools.com/w3images/avatar2.png',
+            subtitle: 'Vice Chairman'
+          },
         ],
         search:'',
         setSearch:'',

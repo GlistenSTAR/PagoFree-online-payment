@@ -1,6 +1,6 @@
 import * as React from 'react'
 import {useState, useEffect} from 'react'
-import { Text, StyleSheet, View, Image, Dimensions, TouchableOpacity, ScrollView } from 'react-native'
+import { Text, StyleSheet, View, Image, Dimensions, TouchableOpacity, ScrollView, Alert } from 'react-native'
 import Item from '../componet/item';
 import { Card } from 'react-native-shadow-cards'
 import UserAvatar from '../componet/UserAvatar';
@@ -25,13 +25,21 @@ const Profile = ({navigation}) => {
   // }, []);
 
   const doSend = function(){
-    setIsLoading(true);
     let formData = new FormData();
+    Alert.alert(
+      "Administradora",
+      "Guardar con éxito.",
+      [
+          { text: 'OK', onPress: () => {}}
+      ]);
+  }
+  const doLogout = function ({navigation}){
+    navigation.push('FirstScreen');
   }
 
   return (
       <>
-        <ScrollView>
+        <ScrollView style={{flex: 1}}>
           <View style={styles.container}>
             <UserAvatar/>
             <Text style={styles.txt_login}>Mi perfil</Text>
@@ -63,23 +71,25 @@ const Profile = ({navigation}) => {
                   borderBottomWidth: 1,
                 }}
               />
-              <View style={styles.item_email}>
-                <Item icon="person-outline" style={{borderRadius:20}} cplaceholder="NOMBRE DE USUARIO" value={username} onChangeText={text=>setUsername(text)}/>
-              </View>
-              <View style={styles.item_email}>
-                <Item icon="person-outline" style={{borderRadius:20}} cplaceholder="NOMBRE COMPLETO" value={fullname} onChangeText={text=>setFullname(text)}/>
-              </View>
-              <View style={styles.item_email}>
-                <Item icon="person-outline" style={{borderRadius:20}} cplaceholder="TELÉFONO" value={email} onChangeText={text=>setEmail(text)}/>
-              </View>
-              <View style={styles.item_email}>
-                <Item icon="phone-iphone" style={{borderRadius:20}} cplaceholder="CORREO ELECTRÓNICO" value={phone} onChangeText={text=>setEmail(text)}/>
-              </View>
-              <View style={styles.item_email}>
-                <Item icon="lock-outline" style={{borderRadius:20}} placeholder="CONTRASEÑA" value={password} onChangeText={text=>setPassword(text)}/>
-              </View>
-              <View style={styles.item_email}>
-                <Item icon="lock-outline" style={{borderRadius:20}} placeholder="CONFIRMAR CONTRASEÑA" value={cpassword} onChangeText={text=>setCpassword(text)}/>
+              <View>
+                <View style={styles.item_email}>
+                  <Item icon="person-outline" style={{borderRadius:20}} cplaceholder="NOMBRE DE USUARIO" value={username} onChangeText={text=>setUsername(text)}/>
+                </View>
+                <View style={styles.item_email}>
+                  <Item icon="person-outline" style={{borderRadius:20}} cplaceholder="NOMBRE COMPLETO" value={fullname} onChangeText={text=>setFullname(text)}/>
+                </View>
+                <View style={styles.item_email}>
+                  <Item icon="person-outline" style={{borderRadius:20}} cplaceholder="TELÉFONO" value={email} onChangeText={text=>setEmail(text)}/>
+                </View>
+                <View style={styles.item_email}>
+                  <Item icon="phone-iphone" style={{borderRadius:20}} cplaceholder="CORREO ELECTRÓNICO" value={phone} onChangeText={text=>setEmail(text)}/>
+                </View>
+                <View style={styles.item_email}>
+                  <Item icon="lock-outline" style={{borderRadius:20}} placeholder="CONTRASEÑA" value={password} onChangeText={text=>setPassword(text)}/>
+                </View>
+                <View style={styles.item_email}>
+                  <Item icon="lock-outline" style={{borderRadius:20}} placeholder="CONFIRMAR CONTRASEÑA" value={cpassword} onChangeText={text=>setCpassword(text)}/>
+                </View>
               </View>
               <View style={styles.btn_wrapper}>
                   <TouchableOpacity onPress={doSend} activeOpacity={0.8}>
@@ -87,7 +97,16 @@ const Profile = ({navigation}) => {
                         style={styles.login_btn}>
                         <Text
                           style={styles.login_btn_text}>
-                          Edit                
+                          SALVAR                
+                        </Text>
+                    </View>
+                  </TouchableOpacity>
+                  <TouchableOpacity onPress={doLogout} activeOpacity={0.8}>
+                    <View
+                        style={styles.login_btn1}>
+                        <Text
+                          style={styles.login_btn_text1}>
+                          DESCONECTAR                
                         </Text>
                     </View>
                   </TouchableOpacity>
@@ -113,10 +132,9 @@ const styles = StyleSheet.create({
     padding: 20,
     position: 'relative',
     backgroundColor:'white',
-    height:deviceSize.height
   },
   txt_login: {
-    marginTop:30,
+    marginTop:20,
     fontSize: 30,
     fontWeight: 'bold',
     marginLeft:20
@@ -155,25 +173,38 @@ const styles = StyleSheet.create({
     margin:20,
   },
   login_btn: {
-    paddingLeft: 40,
-    paddingRight: 40,
-    paddingTop: 15,
-    paddingBottom: 15,
+    paddingTop: 10,
+    paddingBottom: 10,
     borderRadius: 30,
     alignItems: 'center',
-    marginTop: 30,
-    flexDirection: 'row',
-    backgroundColor: '#fda039'
+    marginTop: 40,
+    backgroundColor: '#fda039',
+    textAlign:'center',
+    marginRight:20,
+    width:150
+  },
+  login_btn1: {
+    paddingTop: 10,
+    paddingBottom: 10,
+    borderRadius: 30,
+    alignItems: 'center',
+    marginTop: 40,
+    backgroundColor: 'rgb(250, 85, 85)',
+    width:150
   },
   login_btn_text: {
-    fontSize: 15,
     color: 'white',
-    fontWeight: 'bold',
+    marginRight: 10
+  },
+  login_btn_text1: {
+    color: 'white',
     marginRight: 10
   },
   btn_wrapper: {
+    flex:1,
+    flexDirection:'row',
     alignItems: 'center',
-    marginBottom: 20
+    marginBottom:20
   },
   item_email:{
     width:deviceSize.width*0.85

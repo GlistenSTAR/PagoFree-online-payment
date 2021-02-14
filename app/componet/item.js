@@ -27,8 +27,8 @@ export default class Item extends Component{
 
     componentDidMount(){
         if(!isEmpty(this.props.value)){
-        let a=1;
-        console.log(a++);
+        // let a=1;
+        // console.log(a++);
             this.onFocus();
         }
     }
