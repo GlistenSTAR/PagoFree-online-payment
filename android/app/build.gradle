@@ -130,6 +130,8 @@ android {
 
     defaultConfig {
         applicationId "com.pagofree"
+        missingDimensionStrategy 'react-native-camera', 'general'
+        missingDimensionStrategy 'react-native-camera', 'mlkit'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
