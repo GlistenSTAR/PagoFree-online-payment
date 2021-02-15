@@ -6539,6 +6539,12 @@ react-native-background-upload@^6.2.0:
   resolved "https://registry.yarnpkg.com/react-native-background-upload/-/react-native-background-upload-6.2.0.tgz#c7a5db94c2def8e464f5f770eaa7e62899660921"
   integrity sha512-cGDRprAeu6nKNdg4wbcffruDc/vHO4JpNk6cnfmuVYyZOGJ1Ei8b7vf7inQHgx38PLCpB3seNgyQoM9enGzksA==
 
+"react-native-camera@git+https://git@github.com/react-native-community/react-native-camera.git":
+  version "3.42.2"
+  resolved "git+https://git@github.com/react-native-community/react-native-camera.git#6a81dea6574389add42e4d3f005dabda89115b8c"
+  dependencies:
+    prop-types "^15.6.2"
+
 react-native-elements@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/react-native-elements/-/react-native-elements-3.1.0.tgz#ff2d6fd0ed91b1ebdd15598c4da1fcb2d5780c5f"

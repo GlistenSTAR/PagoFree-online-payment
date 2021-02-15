@@ -8,13 +8,13 @@ const UserAvatar = ({navigation}) => {
   }
   return (
     <TouchableOpacity onPress={doPress} >
-      {/* <View style={styles.smallprofile}>
+      <View style={styles.smallprofile}>
         <Image 
           source={require('../assets/photo/user1.png')} 
           style={styles.top}
         />
         <Text style={{textAlign:'center'}}>Micky</Text>
-      </View> */}
+      </View>
     </TouchableOpacity>
   )
 }

@@ -198,7 +198,6 @@ const styles = StyleSheet.create({
   },
   login_btn_text1: {
     color: 'white',
-    marginRight: 10
   },
   btn_wrapper: {
     flex:1,
