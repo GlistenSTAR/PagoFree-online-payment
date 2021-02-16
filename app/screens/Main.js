@@ -70,7 +70,7 @@ function TabBarIcon(props) {
 const styles = StyleSheet.create({
     tabStyle: {
         marginTop: 12, 
-        marginBottom: 12
+        marginBottom: 12,
     },
     tabBarStyle: {
         height: (Platform.OS == 'ios'? 90: 60), 
