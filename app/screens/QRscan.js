@@ -11,10 +11,6 @@ import {
     Image
   } from 'react-native';
 
-import {
-    Header,
-    Colors,
-} from 'react-native/Libraries/NewAppScreen';
 
 const deviceSize = Dimensions.get('window');
 
@@ -62,10 +58,14 @@ class QRScan extends Component {
     }
     render() {
         const { scan, ScanResult, result } = this.state
+        const { height, width } = Dimensions.get('window');
+        const maskRowHeight = Math.round((height - 300) / 20);
+        const maskColWidth = (width - 300) / 2;
+
         return (
             <View >
                 <Fragment>
-                    <StatusBar barStyle="dark-content" />
+                    <StatusBar/>
                     {!scan && !ScanResult &&
                         <View  style={styles.startview}>
                             <Image source={ require('../assets/img/QRbackground.jpg') } style = { styles.image } />
@@ -92,14 +92,28 @@ class QRScan extends Component {
 
 
                     {scan &&
-                        <QRCodeScanner
-                            reactivate={true}
-                            animate={}
-                            showMarker={true}
-                            ref={(node) => { this.scanner = node }}
-                            onRead={this.onSuccess}
-                            style={styles.mainscreen}
-                        />
+                        <View style={styles.container}>
+                            <QRCodeScanner
+                                reactivate={true}
+                                fadeIn={true}
+                                showMarker={true}
+                                reactivateTimeout={2000}
+                                ref={(node) => { this.scanner = node }}
+                                onRead={this.onSuccess}
+                                style={styles.mainscreen}
+                                containerStyle={{height:0}}
+                                cameraStyle={[{height:deviceSize.height}]}
+                                
+                            />                                          
+                            <View style={styles.maskOutter}>
+                                <View style={[{ flex: maskRowHeight  }, styles.maskRow, styles.maskFrame]} />
+                                <View style={[{ flex: 30 }, styles.maskCenter]}>
+                                <View style={[{ width: maskColWidth }, styles.maskFrame]} />
+                                <View style={styles.maskInner} />
+                                <View style={[{ width: maskColWidth }, styles.maskFrame]} />
+                            </View>
+                            </View>
+                        </View>
                     }
                 </Fragment>
             </View>
@@ -109,6 +123,9 @@ class QRScan extends Component {
 }
 
 const styles = StyleSheet.create({
+    container:{
+        flex:1
+    },
   startbutton:{
     backgroundColor:'orange',
     padding:17,
@@ -130,7 +147,29 @@ const styles = StyleSheet.create({
   },
   mainscreen:{
       height:deviceSize.height,
-  }
+  },
+  maskOutter: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+    alignItems: 'center',
+    justifyContent: 'space-around',
+  },
+  maskInner: {
+    width: 300,
+    backgroundColor: 'transparent',
+    borderColor: 'white',
+    borderWidth: 1,
+  },
+  maskFrame: {
+    backgroundColor: 'rgba(1,1,1,0.6)',
+  },
+  maskRow: {
+    width: '100%',
+  },
+  maskCenter: { flexDirection: 'row' },
 })
 
 

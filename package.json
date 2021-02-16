@@ -38,6 +38,7 @@
     "react-native-screens": "^2.17.1",
     "react-native-shadow-cards": "^1.0.2",
     "react-native-spinkit": "^1.5.1",
+    "react-native-svg": "^12.1.0",
     "react-native-vector-icons": "^8.0.0",
     "yarn": "^1.22.10"
   },
