@@ -1,5 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import QRCodeScanner from 'react-native-qrcode-scanner';
+import * as Animatable from "react-native-animatable";
+import Icon from "react-native-vector-icons/Ionicons";
 import {
     TouchableOpacity,
     Text,
@@ -13,7 +15,14 @@ import {
 
 
 const deviceSize = Dimensions.get('window');
+const rectDimensions = deviceSize.width * 0.65; // this is equivalent to 255 from a 393 device width
+const rectBorderWidth = deviceSize.width * 0.005; // this is equivalent to 2 from a 393 device width
+const scanBarWidth = deviceSize.width * 0.5; // this is equivalent to 180 from a 393 device width
+const scanBarHeight = deviceSize.width * 0.0025; //this is equivalent to 1 from a 393 device width
 
+const rectBorderColor = "orange";
+const overlayColor = "rgba(0,0,0,0.5)";
+const scanBarColor = "red";
 
 class QRScan extends Component {
     constructor(props) {
@@ -56,11 +65,19 @@ class QRScan extends Component {
             ScanResult: false
         })
     }
+
+    makeSlideOutTranslation(translationType, fromValue) {
+        return {
+            from: {
+            [translationType]: deviceSize.width * -0.18
+            },
+            to: {
+            [translationType]: fromValue
+            }
+        };
+    }
     render() {
         const { scan, ScanResult, result } = this.state
-        const { height, width } = Dimensions.get('window');
-        const maskRowHeight = Math.round((height - 300) / 20);
-        const maskColWidth = (width - 300) / 2;
 
         return (
             <View >
@@ -92,28 +109,61 @@ class QRScan extends Component {
 
 
                     {scan &&
-                        <View style={styles.container}>
-                            <QRCodeScanner
-                                reactivate={true}
-                                fadeIn={true}
-                                showMarker={true}
-                                reactivateTimeout={2000}
-                                ref={(node) => { this.scanner = node }}
-                                onRead={this.onSuccess}
-                                style={styles.mainscreen}
-                                containerStyle={{height:0}}
-                                cameraStyle={[{height:deviceSize.height}]}
-                                
-                            />                                          
-                            <View style={styles.maskOutter}>
-                                <View style={[{ flex: maskRowHeight  }, styles.maskRow, styles.maskFrame]} />
-                                <View style={[{ flex: 30 }, styles.maskCenter]}>
-                                <View style={[{ width: maskColWidth }, styles.maskFrame]} />
-                                <View style={styles.maskInner} />
-                                <View style={[{ width: maskColWidth }, styles.maskFrame]} />
+                        // <QRCodeScanner
+                        //     
+                        //     fadeIn={true}
+                        //     showMarker={true}
+                        //     
+                        //     ref={(node) => { this.scanner = node }}
+                        //     onRead={this.onSuccess}
+                        //     style={styles.mainscreen}
+                        //     containerStyle={{height:0}}
+                        //     cameraStyle={[{height:deviceSize.height}]}
+                        // />                                          
+                        <QRCodeScanner
+                            showMarker
+                            reactivateTimeout={2000}
+                            reactivate={true}
+                            onRead={this.onSuccess}
+                            cameraStyle={{ height: deviceSize.height }}
+                            customMarker={
+                            <View style={styles.rectangleContainer}>
+                                <View style={styles.topOverlay}>
+                                <Text style={{ fontSize: 30, color: "white" }}>
+                                    SCANNER QR CODE
+                                </Text>
+                                </View>
+
+                                <View style={{ flexDirection: "row" }}>
+                                <View style={styles.leftAndRightOverlay} />
+
+                                <View style={styles.rectangle}>
+                                    <Icon
+                                        // name="scan-outline"
+                                        size={deviceSize.width * 0.6}
+                                        // size={50}
+                                        color="white"
+                                    />
+                                    <Animatable.View
+                                        style={styles.scanBar}
+                                        direction="alternate-reverse"
+                                        iterationCount="infinite"
+                                        duration={1700}
+                                        easing="linear"
+                                        animation={this.makeSlideOutTranslation(
+                                            "translateY",
+                                            deviceSize.width * -0.54
+                                    )}
+                                    />
+                                </View>
+
+                                <View style={styles.leftAndRightOverlay} />
+                                </View>
+
+                                <View style={styles.bottomOverlay} />
                             </View>
-                            </View>
-                        </View>
+                            }
+                        /> 
                     }
                 </Fragment>
             </View>
@@ -148,30 +198,187 @@ const styles = StyleSheet.create({
   mainscreen:{
       height:deviceSize.height,
   },
-  maskOutter: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    width: '100%',
-    height: '100%',
-    alignItems: 'center',
-    justifyContent: 'space-around',
+
+  //qr css
+    rectangle: {
+        height: rectDimensions,
+        width: rectDimensions,
+        borderWidth: rectBorderWidth,
+        borderColor: rectBorderColor,
+        alignItems: "center",
+        justifyContent: "center",
+        // backgroundColor: "transparent",
+        // borderRadius:10
   },
-  maskInner: {
-    width: 300,
-    backgroundColor: 'transparent',
-    borderColor: 'white',
-    borderWidth: 1,
+  rectangleContainer: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "transparent",
   },
-  maskFrame: {
-    backgroundColor: 'rgba(1,1,1,0.6)',
+  topOverlay: {
+    flex: 1,
+    height: deviceSize.width,
+    width: deviceSize.width,
+    backgroundColor: overlayColor,
+    justifyContent: "center",
+    alignItems: "center"
   },
-  maskRow: {
-    width: '100%',
+    bottomOverlay: {
+    flex: 1,
+    height: deviceSize.width,
+    width: deviceSize.width,
+    backgroundColor: overlayColor,
+    paddingBottom: deviceSize.width * 0.25
   },
-  maskCenter: { flexDirection: 'row' },
+
+  leftAndRightOverlay: {
+    height: deviceSize.width * 0.65,
+    width: deviceSize.width,
+    backgroundColor: overlayColor
+  },
+
+  scanBar: {
+    width: scanBarWidth+10,
+    height: scanBarHeight,
+    backgroundColor: scanBarColor,
+    borderWidth:2,
+    borderColor:scanBarColor
+  }
 })
 
 
 export default QRScan;
+
+// import React, { Component } from "react";
+
+// import { View, Dimensions, Text } from "react-native";
+// import QRCodeScanner from "react-native-qrcode-scanner";
+// import Icon from "react-native-vector-icons/Ionicons";
+// import * as Animatable from "react-native-animatable";
+
+// const SCREEN_HEIGHT = Dimensions.get("window").height;
+// const SCREEN_WIDTH = Dimensions.get("window").width;
+
+// // console.disableYellowBox = true;
+
+// class QRScan extends Component {
+//   onSuccess(e) {
+//     alert(e);
+//   }
+
+//   makeSlideOutTranslation(translationType, fromValue) {
+//     return {
+//       from: {
+//         [translationType]: SCREEN_WIDTH * -0.18
+//       },
+//       to: {
+//         [translationType]: fromValue
+//       }
+//     };
+//   }
+
+//   render() {
+//     return (
+//       <QRCodeScanner
+//         showMarker
+//         onRead={this.onSuccess.bind(this)}
+//         cameraStyle={{ height: SCREEN_HEIGHT }}
+//         customMarker={
+//           <View style={styles.rectangleContainer}>
+//             <View style={styles.topOverlay}>
+//               <Text style={{ fontSize: 30, color: "white" }}>
+//                 QR CODE SCANNER
+//               </Text>
+//             </View>
+
+//             <View style={{ flexDirection: "row" }}>
+//               <View style={styles.leftAndRightOverlay} />
+
+//               <View style={styles.rectangle}>
+//                 <Icon
+//                   name="ios-qr-scanner"
+//                   size={SCREEN_WIDTH * 0.73}
+//                   color="blue"
+//                 />
+//                 <Animatable.View
+//                   style={styles.scanBar}
+//                   direction="alternate-reverse"
+//                   iterationCount="infinite"
+//                   duration={1700}
+//                   easing="linear"
+//                   animation={this.makeSlideOutTranslation(
+//                     "translateY",
+//                     SCREEN_WIDTH * -0.54
+//                   )}
+//                 />
+//               </View>
+
+//               <View style={styles.leftAndRightOverlay} />
+//             </View>
+
+//             <View style={styles.bottomOverlay} />
+//           </View>
+//         }
+//       />
+//     );
+//   }
+// }
+
+// const overlayColor = "rgba(0,0,0,0.5)"; // this gives us a black color with a 50% transparency
+
+// const rectDimensions = SCREEN_WIDTH * 0.65; // this is equivalent to 255 from a 393 device width
+// const rectBorderWidth = SCREEN_WIDTH * 0.005; // this is equivalent to 2 from a 393 device width
+// const rectBorderColor = "red";
+
+// const scanBarWidth = SCREEN_WIDTH * 0.46; // this is equivalent to 180 from a 393 device width
+// const scanBarHeight = SCREEN_WIDTH * 0.0025; //this is equivalent to 1 from a 393 device width
+// const scanBarColor = "#22ff00";
+
+// const iconScanColor = "blue";
+
+// const styles = {
+//   
+
+//   rectangle: {
+//     height: rectDimensions,
+//     width: rectDimensions,
+//     borderWidth: rectBorderWidth,
+//     borderColor: rectBorderColor,
+//     alignItems: "center",
+//     justifyContent: "center",
+//     backgroundColor: "transparent"
+//   },
+
+//   topOverlay: {
+//     flex: 1,
+//     height: SCREEN_WIDTH,
+//     width: SCREEN_WIDTH,
+//     backgroundColor: overlayColor,
+//     justifyContent: "center",
+//     alignItems: "center"
+//   },
+
+//   bottomOverlay: {
+//     flex: 1,
+//     height: SCREEN_WIDTH,
+//     width: SCREEN_WIDTH,
+//     backgroundColor: overlayColor,
+//     paddingBottom: SCREEN_WIDTH * 0.25
+//   },
+
+//   leftAndRightOverlay: {
+//     height: SCREEN_WIDTH * 0.65,
+//     width: SCREEN_WIDTH,
+//     backgroundColor: overlayColor
+//   },
+
+//   scanBar: {
+//     width: scanBarWidth,
+//     height: scanBarHeight,
+//     backgroundColor: scanBarColor
+//   }
+// };
+
+// export default QRScan;
 
