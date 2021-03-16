@@ -11,26 +11,51 @@ import AsyncStorage from '@react-native-community/async-storage';
 const deviceSize = Dimensions.get("window");
 
 const Login = ({navigation}) => {
-    const [email1, setEmail] = useState("test@gmail.com");
-    const [password1, setPassword] = useState("123456");
+    const [email1, setEmail] = useState("");
+    const [password1, setPassword] = useState("");
     const [isLoading, setIsLoading] = useState(false);
-
 
     const doLogin = function(){
       var formData = new FormData();
-      formData.append("email", email1);
-      formData.append("password", password1);
-      if(email1=="test@gmail.com"&&password1=="123456"){
-        navigation.push('Main');
-      } else {
-        setIsLoading(false);
+      formData.append("_username", email1);
+      formData.append("_password", password1);
+      fetch(API_SERVER_URL + "mobile/login/", {
+          method: 'POST',
+          body: formData
+        })
+        .then(res => res.json())
+        .then(data => {    
+          setIsLoading(false);
+          console.log(data);
+          if(data.response == true){
+            try {
+              AsyncStorage.setItem(
+                  'user',
+                  JSON.stringify(data.data.user)
+              );
+            } catch (error) { 
+              console.log("Can't store on Storage.");         
+            }
+            navigation.push('Main');
+          } else {
+          setIsLoading(false);
             Alert.alert(
             "¡Error de inicio de sesion!",
             "El correo electrónico o la contraseña no coinciden.",
             [
                 { text: 'OK', onPress: () => {}}
             ]);
-      }
+        }
+      })
+      .catch(err => {
+        console.log("Login API error", err);
+        Alert.alert(
+            "Carga fallida!",
+            "Please check Network or Wifi.",
+            [
+            { text: 'OK', onPress: () => {}}
+            ]);
+      });
     }
 
     return (
@@ -104,15 +129,15 @@ const Login = ({navigation}) => {
 
 const styles = StyleSheet.create({
     loading_container: {
-        position: 'absolute',
-        justifyContent: 'center',
-        alignItems: 'center',
-        top: 0,
-        left: 0,
-        width: deviceSize.width,
-        height: deviceSize.height,
-        backgroundColor: 'rgba(0,0,0,0.3)',
-        zIndex: 1000
+      position: 'absolute',
+      justifyContent: 'center',
+      alignItems: 'center',
+      top: 0,
+      left: 0,
+      width: deviceSize.width,
+      height: deviceSize.height,
+      backgroundColor: 'rgba(0,0,0,0.3)',
+      zIndex: 1000
     },
     container: {   
       height: deviceSize.height,

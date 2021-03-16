@@ -1,14 +1,11 @@
 import * as React from 'react';
 import { useState } from 'react';
-import {ActivityIndicator, StyleSheet, Image, TouchableOpacity, Dimensions, ScrollView, Text,View } from 'react-native';
-import {Icon} from 'react-native-elements'
+import {ActivityIndicator, StyleSheet, Image, TouchableOpacity, Dimensions, ScrollView, Text,View, Alert } from 'react-native';
 import Item from '../componet/item';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {Card} from 'react-native-shadow-cards';
 
-import AsyncStorage from '@react-native-community/async-storage';
 import { API_SERVER_URL } from '../app_config';
-
 const deviceSize = Dimensions.get('window');
 
 const RegisterScreen = ({navigation}) => {
@@ -23,11 +20,46 @@ const RegisterScreen = ({navigation}) => {
   const doSignup = function(){
     setIsLoading(true);
     var formData = new FormData();
-    formData.append("name", fullname);
-    formData.append("email", email);
-    formData.append("mobile", mobile);
-    formData.append("password", password);
-    formData.append("user_name", username);
+    formData.append("nombreRegistrarUsuario", fullname);
+    formData.append("emailRegistrarUsuario", email);
+    formData.append("telephone", mobile);
+    formData.append("passwordRegistrarUsuario", password);
+    formData.append("apellidosRegistrarUsuario", username);
+
+    fetch(API_SERVER_URL + "mobile/registrar/", {
+      method: 'POST',
+      body: formData
+    })
+    .then(res => res.json())
+    .then(data => {    
+      setIsLoading(false);
+      if(data.response == true){
+        Alert.alert(
+          "Éxito registrado.",
+          [
+              { text: 'OK', onPress: () => {}}
+          ]);
+        navigation.push('Login');
+      } else {
+      setIsLoading(false);
+        Alert.alert(
+        "El éxito falló.",
+        "Comprueba el valor de entrada.",
+        [
+            { text: 'OK', onPress: () => {}}
+        ]);
+    }
+  })
+  .catch(err => {
+    setIsLoading(false);
+    console.log("Login API error", err);
+    Alert.alert(
+        "Registro fallido",
+        "Comprueba Red o Wifi!. or Comprueba el valor de entrada.",
+        [
+        { text: 'OK', onPress: () => {}}
+        ]);
+  });
   }
 
   return (
