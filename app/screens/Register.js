@@ -5,6 +5,8 @@ import Item from '../componet/item';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {Card} from 'react-native-shadow-cards';
 
+import axios from 'axios';
+
 import { API_SERVER_URL } from '../app_config';
 const deviceSize = Dimensions.get('window');
 
@@ -18,49 +20,85 @@ const RegisterScreen = ({navigation}) => {
   const [isLoadng, setIsLoading] = useState(false);
 
   const doSignup = function(){
-    setIsLoading(true);
+    // setIsLoading(true);
     var formData = new FormData();
-    formData.append("nombreRegistrarUsuario", fullname);
     formData.append("emailRegistrarUsuario", email);
-    formData.append("telephone", mobile);
     formData.append("passwordRegistrarUsuario", password);
+    formData.append("nombreRegistrarUsuario", fullname);
     formData.append("apellidosRegistrarUsuario", username);
+    formData.append("telephone", mobile);
 
-    fetch(API_SERVER_URL + "mobile/registrar/", {
-      method: 'POST',
-      body: formData
-    })
-    .then(res => res.json())
-    .then(data => {    
-      setIsLoading(false);
-      if(data.response == true){
-        Alert.alert(
-          "Éxito registrado.",
-          [
-              { text: 'OK', onPress: () => {}}
-          ]);
-        navigation.push('Login');
-      } else {
-      setIsLoading(false);
-        Alert.alert(
-        "El éxito falló.",
-        "Comprueba el valor de entrada.",
-        [
-            { text: 'OK', onPress: () => {}}
-        ]);
-    }
-  })
-  .catch(err => {
-    setIsLoading(false);
-    console.log("Login API error", err);
-    Alert.alert(
-        "Registro fallido",
-        "Comprueba Red o Wifi!. or Comprueba el valor de entrada.",
-        [
-        { text: 'OK', onPress: () => {}}
-        ]);
-  });
-  }
+    axios.post(API_SERVER_URL + "mobile/registrar/", formData)
+      .then(res => console.log(res.data));
+    // fetch(API_SERVER_URL + "mobile/registrar/", {
+    //   method: 'POST',
+    //   body: formData
+    // })
+    // .then(res => res.json())
+    // .then(data => {
+    //     setIsLoading(false);
+    //     if(data.response == true){
+    //       console.log("Register API success", data);
+    //       try {
+    //         AsyncStorage.setItem(
+    //             'success',
+    //             JSON.stringify(data.response)
+    //         );
+    //       } catch (error) { 
+    //         console.log("Can't store on Storage.");         
+    //       }
+    //       navigation.push('Login');
+    //     }else{
+    //       Alert.alert(
+    //         "Signup Failed!",
+    //         JSON.stringify(data.error),
+    //         [
+    //           { text: 'OK', onPress: () => {}}
+    //         ]);
+    //     }        
+    // })
+    // .catch(err => {
+    //   setIsLoading(false);
+    //     console.log("Register API error", err);  
+    //     Alert.alert(
+    //       "Login Failed!",
+    //       "Please check Network or Wifi.",
+    //       [
+    //       { text: 'OK', onPress: () => {}}
+    //       ]);    
+    // });
+
+  //   fetch(API_SERVER_URL + "mobile/registrar/", {
+  //       method: 'POST',
+  //       body: formData
+  //     })
+  //   // .then(async(res) => await res.json())
+  //     .then(res => { res.json();
+  //       // console.log('>>>>>>>>>>>>>>>>>>>>>>>>',res);    
+  //   //   setIsLoading(false);
+  //   //   if(data.response == true){
+  //   //     console.log('correctly registered');
+  //   //     navigation.push('Login');
+  //   //   } else {
+  //   //     Alert.alert(
+  //   //     "El éxito falló.",
+  //   //     "Comprueba el valor de entrada.",
+  //   //     [
+  //   //         { text: 'OK', onPress: () => {}}
+  //   //     ]);
+  //   // }
+  // })
+  // .catch(err => {
+  //   setIsLoading(false);
+  //   console.log("Register API error", err);
+  //   Alert.alert(
+  //       "Registro fallido",
+  //       "Comprueba Red o Wifi!. or Comprueba el valor de entrada.",
+  //       [
+  //       { text: 'OK', onPress: () => {}}
+  //       ]);
+  // });
+}
 
   return (
     <>

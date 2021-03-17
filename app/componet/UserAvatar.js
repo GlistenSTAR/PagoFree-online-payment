@@ -4,7 +4,7 @@ import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native'
 
 const UserAvatar = ({navigation}) => {
   const doPress = function(){
-    console.log("asdf");
+    // console.log("asdf");
   }
   return (
     <TouchableOpacity onPress={doPress} >

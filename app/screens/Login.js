@@ -26,19 +26,18 @@ const Login = ({navigation}) => {
         .then(res => res.json())
         .then(data => {    
           setIsLoading(false);
-          console.log(data);
           if(data.response == true){
             try {
               AsyncStorage.setItem(
                   'user',
-                  JSON.stringify(data.data.user)
+                  JSON.stringify(data.user)
               );
             } catch (error) { 
               console.log("Can't store on Storage.");         
             }
             navigation.push('Main');
           } else {
-          setIsLoading(false);
+            setIsLoading(false);
             Alert.alert(
             "¡Error de inicio de sesion!",
             "El correo electrónico o la contraseña no coinciden.",
@@ -48,6 +47,7 @@ const Login = ({navigation}) => {
         }
       })
       .catch(err => {
+        setIsLoading(false);
         console.log("Login API error", err);
         Alert.alert(
             "Carga fallida!",

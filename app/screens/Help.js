@@ -60,44 +60,46 @@ class Help extends Component {
                     <Item icon="search"  placeholder="Buscar" value={this.state.search} onChangeText={text=>setsearch(text)} style={{borderRadius:50}}/>
                   </View>  
                 </View>
-            {
-               this.state.names.map((item, index) => (
-                  <TouchableOpacity
-                     key = {item.id}
-                     style = {styles.list}
-                     onPress = {() => this.setModalVisible(true, item)}>
-                     <View style={{flex:1, flexDirection:"row"}}>
-                        <View style={{width:deviceSize.width*0.2,alignItems:'center'}}>
-                         <Image source={require('../assets/img/help.png')} style={styles.lefticon}/> 
+               
+               {
+                  this.state.names.map((item, index) => (
+                     <TouchableOpacity
+                        key = {item.id}
+                        style = {styles.list}
+                        onPress = {() => this.setModalVisible(true, item)}>
+                        <View style={{flex:1, flexDirection:"row"}}>
+                           <View style={{width:deviceSize.width*0.2,alignItems:'center'}}>
+                           <Image source={require('../assets/img/help.png')} style={styles.lefticon}/> 
+                           </View>
+                           <View style={{width:deviceSize.width*0.7, textAlign:'center',marginBottom:'auto',marginTop:'auto'}}>
+                           <Text style={{fontSize:16, color:'black'}}>{item.title}</Text>
+                           <Text style={{fontSize:14, color:'grey', flexShrink: 1}} numberOfLines={2}>{item.description}</Text>
+                           </View>
                         </View>
-                        <View style={{width:deviceSize.width*0.7, textAlign:'center',marginBottom:'auto',marginTop:'auto'}}>
-                         <Text style={{fontSize:16, color:'black'}}>{item.title}</Text>
-                         <Text style={{fontSize:14, color:'grey', flexShrink: 1}} numberOfLines={2}>{item.description}</Text>
-                        </View>
-                     </View>
-                  </TouchableOpacity>
-               ))
-            }
-         <Modal
-            animationType="fade"
-            transparent={true}
-            visible={this.state.modalVisible}
-         >
-            <View style={styles.centeredView}>
-            <View style={styles.modalView}>
-               <Text style={{fontSize:16, color:'black', marginBottom:10}}>{temp.title}</Text>
-               <Text style={{fontSize:14, color:'grey',textAlign: 'justify'}}>{temp.description}</Text>
-               <TouchableHighlight
-                  style={{ ...styles.openButton, backgroundColor: "#2196F3",marginTop:10, }}
-                  onPress={() => {
-                  this.setModalVisible(!this.state.modalVisible, null);
-                  }}
-               >
-                  <Text style={styles.textStyle}>Cerrar</Text>
-               </TouchableHighlight>
-            </View>
-            </View>
-         </Modal>   
+                     </TouchableOpacity>
+                  ))
+               }
+
+            <Modal
+               animationType="fade"
+               transparent={true}
+               visible={this.state.modalVisible}
+            >
+               <View style={styles.centeredView}>
+                  <View style={styles.modalView}>
+                     <Text style={{fontSize:16, color:'black', marginBottom:10}}>{temp.title}</Text>
+                     <Text style={{fontSize:14, color:'grey',textAlign: 'justify'}}>{temp.description}</Text>
+                     <TouchableHighlight
+                        style={{ ...styles.openButton, backgroundColor: "#2196F3",marginTop:10, }}
+                        onPress={() => {
+                        this.setModalVisible(!this.state.modalVisible, null);
+                        }}
+                     >
+                        <Text style={styles.textStyle}>Cerrar</Text>
+                     </TouchableHighlight>
+                  </View>
+               </View>
+            </Modal>   
          </View>
       )
    }

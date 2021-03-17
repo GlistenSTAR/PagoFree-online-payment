@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import {
     View,
-    Text,
     StyleSheet,
     Dimensions,
 } from "react-native";
@@ -22,18 +21,22 @@ class FirstScreen extends Component {
         ]   
       };
     }
+
     onLayout = e => {
       this.setState({
         height: e.nativeEvent.layout.height,
         width: e.nativeEvent.layout.width
       });
     };
+
     onLogin = () => {
       this.props.navigation.push('Login');
     }
+
     onRegister = () =>{
       this.props.navigation.push('Register');
     }
+
     render() {          
         return (
           <View style={styles.container} onLayout={this.onLayout}>
@@ -45,8 +48,8 @@ class FirstScreen extends Component {
               paginationBoxVerticalPadding={20}
               autoplay
               circleLoop
-            >
-            </SliderBox>
+            />
+
             <View style={{flexDirection: "row", position:'absolute', right:0}}>
               <Button
                   icon={
