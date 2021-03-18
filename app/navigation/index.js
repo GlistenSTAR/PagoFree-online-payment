@@ -8,6 +8,7 @@ import FirstScreen from '../screens/FirstScreen';
 import LoginScreen from '../screens/Login';
 import RegisterScreen from '../screens/Register';
 import MainScreen from '../screens/Main';
+import ForgotScreen from '../screens/Forgot';
 
 const Stack = createStackNavigator();
 
@@ -24,6 +25,7 @@ export default class App extends Component {
       });
     }, 4000);
   }
+  
   render() {
     let { visible } = this.state, Content;
     if(visible){
@@ -38,6 +40,7 @@ export default class App extends Component {
             <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }}/>
             <Stack.Screen name="Register" component={RegisterScreen} options={{ headerShown: false }}/>
             <Stack.Screen name="Main" component={MainScreen} options={{ headerShown: false }}/>
+            <Stack.Screen name="Forgot" component={ForgotScreen} options={{ headerShown: false }}/>
           </Stack.Navigator>
         </NavigationContainer>
       )

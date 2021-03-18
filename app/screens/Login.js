@@ -24,7 +24,7 @@ const Login = ({navigation}) => {
           body: formData
         })
         .then(res => res.json())
-        .then(data => {    
+        .then(data => {
           setIsLoading(false);
           if(data.response == true){
             try {
@@ -32,8 +32,8 @@ const Login = ({navigation}) => {
                   'user',
                   JSON.stringify(data.user)
               );
-            } catch (error) { 
-              console.log("Can't store on Storage.");         
+            } catch (error) {
+              console.log("Can't store on Storage.");
             }
             navigation.push('Main');
           } else {
@@ -69,11 +69,11 @@ const Login = ({navigation}) => {
                   borderBottomWidth: 1,
                 }}
               />
-              <Card 
+              <Card
                 style={{
-                  borderColor:"rgb(163, 162, 162)", 
+                  borderColor:"rgb(163, 162, 162)",
                   padding : 20,
-                  marginTop:30, 
+                  marginTop:30,
                   borderRadius:10,
                 }}>
 
@@ -89,7 +89,7 @@ const Login = ({navigation}) => {
                   <Item icon="mail-outline"  cplaceholder="CORREO ELECTRÓNICO" value={email1} onChangeText={text=>setEmail(text)}/>
                 </View>
                 <View style={styles.item_email}>
-                  <Item icon="lock-outline"  cplaceholder="CONTRASEÑA" secureTextEntry={true} forgot={true} value={password1} onChangeText={text=>setPassword(text)}/> 
+                  <Item icon="lock-outline"  cplaceholder="CONTRASEÑA" secureTextEntry={true} forgot={true} value={password1} onChangeText={text=>setPassword(text)}/>
                 </View>
                 <View style={styles.btn_wrapper}>
                     <TouchableOpacity onPress={doLogin} activeOpacity={0.8}>
@@ -97,7 +97,7 @@ const Login = ({navigation}) => {
                           style={styles.login_btn}>
                           <Text
                             style={styles.login_btn_text}>
-                            Ingresá                
+                            Ingresá
                           </Text>
                           <Ionicons name="md-arrow-forward" size={16} color="white"/>
                       </View>
@@ -106,24 +106,24 @@ const Login = ({navigation}) => {
                 <View style={styles.bottom_wrapper}>
                   <Text>
                     ¿No tienes una cuenta?
-                  </Text>         
+                  </Text>
                   <TouchableOpacity onPress={() => navigation.push('Register')}>
                     <Text style={styles.signup_btn_text}>
                       Regístrate
                     </Text>
-                  </TouchableOpacity>         
-                </View>  
-              </Card> 
+                  </TouchableOpacity>
+                </View>
+              </Card>
             </View>
-        </ScrollView> 
+        </ScrollView>
         {
         isLoading && (
             <View style={styles.loading_container}>
-              <ActivityIndicator size="large" color="orange"/>  
-            </View> 
+              <ActivityIndicator size="large" color="orange"/>
+            </View>
           )
-        } 
-      </View>   
+        }
+      </View>
     );
 }
 
@@ -139,7 +139,7 @@ const styles = StyleSheet.create({
       backgroundColor: 'rgba(0,0,0,0.3)',
       zIndex: 1000
     },
-    container: {   
+    container: {
       height: deviceSize.height,
       justifyContent: 'center',
       padding: 20,
@@ -147,7 +147,7 @@ const styles = StyleSheet.create({
       backgroundColor:'white'
     },
     top: {
-      marginTop:20,      
+      marginTop:20,
       marginBottom:20,
       marginRight:'auto',
       marginLeft:'auto'
@@ -196,5 +196,5 @@ const styles = StyleSheet.create({
       marginLeft: 10
     }
   });
-  
-export default Login;
+
+  export default Login;

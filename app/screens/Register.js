@@ -1,11 +1,9 @@
 import * as React from 'react';
 import { useState } from 'react';
-import {ActivityIndicator, StyleSheet, Image, TouchableOpacity, Dimensions, ScrollView, Text,View, Alert } from 'react-native';
+import { ActivityIndicator, StyleSheet, Image, TouchableOpacity, Dimensions, ScrollView, Text,View, Alert } from 'react-native';
 import Item from '../componet/item';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import {Card} from 'react-native-shadow-cards';
-
-import axios from 'axios';
+import { Card } from 'react-native-shadow-cards';
 
 import { API_SERVER_URL } from '../app_config';
 const deviceSize = Dimensions.get('window');
@@ -20,7 +18,7 @@ const RegisterScreen = ({navigation}) => {
   const [isLoadng, setIsLoading] = useState(false);
 
   const doSignup = function(){
-    // setIsLoading(true);
+    setIsLoading(true);
     var formData = new FormData();
     formData.append("emailRegistrarUsuario", email);
     formData.append("passwordRegistrarUsuario", password);
@@ -28,77 +26,37 @@ const RegisterScreen = ({navigation}) => {
     formData.append("apellidosRegistrarUsuario", username);
     formData.append("telephone", mobile);
 
-    axios.post(API_SERVER_URL + "mobile/registrar/", formData)
-      .then(res => console.log(res.data));
-    // fetch(API_SERVER_URL + "mobile/registrar/", {
-    //   method: 'POST',
-    //   body: formData
-    // })
-    // .then(res => res.json())
-    // .then(data => {
-    //     setIsLoading(false);
-    //     if(data.response == true){
-    //       console.log("Register API success", data);
-    //       try {
-    //         AsyncStorage.setItem(
-    //             'success',
-    //             JSON.stringify(data.response)
-    //         );
-    //       } catch (error) { 
-    //         console.log("Can't store on Storage.");         
-    //       }
-    //       navigation.push('Login');
-    //     }else{
-    //       Alert.alert(
-    //         "Signup Failed!",
-    //         JSON.stringify(data.error),
-    //         [
-    //           { text: 'OK', onPress: () => {}}
-    //         ]);
-    //     }        
-    // })
-    // .catch(err => {
-    //   setIsLoading(false);
-    //     console.log("Register API error", err);  
-    //     Alert.alert(
-    //       "Login Failed!",
-    //       "Please check Network or Wifi.",
-    //       [
-    //       { text: 'OK', onPress: () => {}}
-    //       ]);    
-    // });
-
-  //   fetch(API_SERVER_URL + "mobile/registrar/", {
-  //       method: 'POST',
-  //       body: formData
-  //     })
-  //   // .then(async(res) => await res.json())
-  //     .then(res => { res.json();
-  //       // console.log('>>>>>>>>>>>>>>>>>>>>>>>>',res);    
-  //   //   setIsLoading(false);
-  //   //   if(data.response == true){
-  //   //     console.log('correctly registered');
-  //   //     navigation.push('Login');
-  //   //   } else {
-  //   //     Alert.alert(
-  //   //     "El éxito falló.",
-  //   //     "Comprueba el valor de entrada.",
-  //   //     [
-  //   //         { text: 'OK', onPress: () => {}}
-  //   //     ]);
-  //   // }
-  // })
-  // .catch(err => {
-  //   setIsLoading(false);
-  //   console.log("Register API error", err);
-  //   Alert.alert(
-  //       "Registro fallido",
-  //       "Comprueba Red o Wifi!. or Comprueba el valor de entrada.",
-  //       [
-  //       { text: 'OK', onPress: () => {}}
-  //       ]);
-  // });
-}
+    fetch(API_SERVER_URL + "mobile/registrar/", {
+        method: 'POST',
+        body: formData
+      })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        setIsLoading(false);
+        if(data.response == true){
+          console.log('correctly registered');
+          navigation.push('Login');
+        } else {
+          Alert.alert(
+          "El éxito falló.",
+          "Comprueba el valor de entrada.",
+          [
+              { text: 'OK', onPress: () => {}}
+          ]);
+        }
+      })
+      .catch(err => {
+        setIsLoading(false);
+        console.log("Register API error", err);
+        Alert.alert(
+            "Registro fallido",
+            "Comprueba Red o Wifi!. or Comprueba el valor de entrada.",
+            [
+            { text: 'OK', onPress: () => {}}
+            ]);
+      });
+    }
 
   return (
     <>
@@ -113,10 +71,10 @@ const RegisterScreen = ({navigation}) => {
               borderBottomWidth: 1,
             }}
           />
-          <Card 
+          <Card
             style={{
               padding : 20,
-              marginTop:10, 
+              marginTop:10,
               borderRadius:10,
               justifyContent:'center'
           }}>
@@ -139,13 +97,13 @@ const RegisterScreen = ({navigation}) => {
               <Item icon="mail-outline"  cplaceholder="CORREO ELECTRÓNICO" value={email} onChangeText={text=>setEmail(text)}/>
             </View>
             <View style={styles.item_email}>
-              <Item icon="lock-outline"  cplaceholder="CONTRASEÑA" secureTextEntry={true} value={password} onChangeText={text=>setPassword(text)}/> 
-            </View>
-            <View style={styles.item_email}> 
-              <Item icon="lock-outline"  cplaceholder="CONFIRMAR CONTRASEÑA" secureTextEntry={true} value={confirmPassword} onChangeText={text=>setConfirmPassword(text)}/> 
+              <Item icon="lock-outline"  cplaceholder="CONTRASEÑA" secureTextEntry={true} value={password} onChangeText={text=>setPassword(text)}/>
             </View>
             <View style={styles.item_email}>
-              <Item icon="phone-iphone" cplaceholder="NÚMERO DE TELÉFONO MÓVIL" value={mobile} onChangeText={text=>setMobile(text)} keyboardType="phone-pad"/> 
+              <Item icon="lock-outline"  cplaceholder="CONFIRMAR CONTRASEÑA" secureTextEntry={true} value={confirmPassword} onChangeText={text=>setConfirmPassword(text)}/>
+            </View>
+            <View style={styles.item_email}>
+              <Item icon="phone-iphone" cplaceholder="NÚMERO DE TELÉFONO MÓVIL" value={mobile} onChangeText={text=>setMobile(text)} keyboardType="phone-pad"/>
             </View>
             <View style={styles.btn_wrapper}>
                 <TouchableOpacity onPress={doSignup} activeOpacity={0.8}>
@@ -153,7 +111,7 @@ const RegisterScreen = ({navigation}) => {
                       style={styles.login_btn}>
                       <Text
                         style={styles.login_btn_text}>
-                        Registrarse                
+                        Registrarse
                       </Text>
                       <Ionicons name="md-arrow-forward" size={16} color="white"/>
                   </View>
@@ -162,24 +120,24 @@ const RegisterScreen = ({navigation}) => {
             <View style={styles.bottom_wrapper}>
               <Text>
                 Tengo una cuenta.
-              </Text>         
+              </Text>
               <TouchableOpacity onPress={() => navigation.push('Login')}>
                 <Text style={styles.signup_btn_text}>
                   Iniciar sesión
                 </Text>
-              </TouchableOpacity>         
-            </View>  
-          </Card> 
+              </TouchableOpacity>
+            </View>
+          </Card>
         </View>
       </ScrollView>
       {
         isLoadng && (
             <View style={styles.loading_container}>
-              <ActivityIndicator size="large" color="orange"/>  
-            </View> 
+              <ActivityIndicator size="large" color="orange"/>
+            </View>
         )
-      } 
-    </> 
+      }
+    </>
   );
 }
 
@@ -253,5 +211,5 @@ const styles = StyleSheet.create({
       marginLeft: 10
     }
 });
-  
+
 export default RegisterScreen;

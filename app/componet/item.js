@@ -32,7 +32,7 @@ export default class Item extends Component{
 
     onFocus(){
         Animated.timing(this.state.animation, {
-            toValue: -30, 
+            toValue: -30,
             duration: 100,
             useNativeDriver: true
         }).start();
@@ -41,15 +41,20 @@ export default class Item extends Component{
     onBlur(){
         if(this.props.value == ""){
             Animated.timing(this.state.animation, {
-                toValue: 0, 
+                toValue: 0,
                 duration: 100,
                 useNativeDriver: true
             }).start();
-        }        
+        }
     }
 
     onActive(){
         this.inputInstance.focus();
+    }
+
+    onForgot = ({navigation}) => {
+      alert('asdfasdf');
+      navigation.push('Forgot');
     }
 
     render(){
@@ -59,7 +64,7 @@ export default class Item extends Component{
             }]
         }
         return (
-            <TouchableOpacity activeOpacity={1} onPress={this.onActive}>      
+            <TouchableOpacity activeOpacity={1} onPress={this.onActive}>
                 <View style={[styles.container, this.props.style, this.props.value == ""? styles.container_normal: styles.container_active]}>
                     <View style={styles.icon}>
                         {this.props.icon?
@@ -69,31 +74,31 @@ export default class Item extends Component{
                         <TextInput ref={(input) => {this.inputInstance = input;}} secureTextEntry={this.props.secureTextEntry} autoCapitalize="none" style={styles.input_wrapper} {...this.props} onFocus={this.onFocus}  onBlur={this.onBlur}/>
                         <Animated.View style={[styles.label_container, transformStyle]}>
                             <Text style={styles.label}>{this.props.cplaceholder}</Text>
-                        </Animated.View>                   
+                        </Animated.View>
                         {this.props.forgot?
                             (<TouchableOpacity style={styles.forgot_btn}>
-                                <Text style={styles.forgot_btn_text}>OLVIDÓ</Text>
-                            </TouchableOpacity>)                    
+                                <Text style={styles.forgot_btn_text} onClick={this.onForgot}>OLVIDÓ</Text>
+                            </TouchableOpacity>)
                             :null}
                     </View>
-                </View>   
-            </TouchableOpacity>  
-                  
+                </View>
+            </TouchableOpacity>
+
         );
     }
 }
 const styles = StyleSheet.create({
-    container: {   
+    container: {
         flexDirection: 'row',
-        height: 40, 
+        height: 40,
         marginTop: 10,
-        marginBottom: 10, 
+        marginBottom: 10,
         backgroundColor: 'white'
     },
     container_normal: {
         borderWidth: 1,
         borderColor: '#e9e9e9',
-        borderRadius:15       
+        borderRadius:15
     },
 
     container_active: {
@@ -108,12 +113,12 @@ const styles = StyleSheet.create({
         borderRadius:15
     },
     icon: {
-        width: 40,    
+        width: 40,
         justifyContent: 'center',
         alignItems: 'center'
     },
     input: {
-        flex: 1   
+        flex: 1
     },
     input_wrapper: {
         height: 40,
@@ -146,4 +151,4 @@ const styles = StyleSheet.create({
 Item.propTypes = {
     ...TextInput.propTypes,
     icon: PropTypes.string
-}  
+}
