@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { StyleSheet, Image, TouchableOpacity, Dimensions, ScrollView, Alert, Text,View, ActivityIndicator } from 'react-native';
 import Item from '../componet/item';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -89,7 +89,7 @@ const Login = ({navigation}) => {
                   <Item icon="mail-outline"  cplaceholder="CORREO ELECTRÓNICO" value={email1} onChangeText={text=>setEmail(text)}/>
                 </View>
                 <View style={styles.item_email}>
-                  <Item icon="lock-outline"  cplaceholder="CONTRASEÑA" secureTextEntry={true} forgot={true} value={password1} onChangeText={text=>setPassword(text)}/>
+                  <Item icon="lock-outline"  cplaceholder="CONTRASEÑA" secureTextEntry={true} forgot={true} value={password1} onChangeText={text=>setPassword(text)} navigation={navigation}/>
                 </View>
                 <View style={styles.btn_wrapper}>
                     <TouchableOpacity onPress={doLogin} activeOpacity={0.8}>

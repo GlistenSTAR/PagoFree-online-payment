@@ -8,8 +8,10 @@ import {
   Text,
   TextInput
 } from 'react-native';
+
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import isEmpty from '../common/is-empty';
+
 export default class Item extends Component{
     inputInstance = null;
 
@@ -52,11 +54,6 @@ export default class Item extends Component{
         this.inputInstance.focus();
     }
 
-    onForgot = ({navigation}) => {
-      alert('asdfasdf');
-      navigation.push('Forgot');
-    }
-
     render(){
         const transformStyle = {
             transform: [{
@@ -77,7 +74,7 @@ export default class Item extends Component{
                         </Animated.View>
                         {this.props.forgot?
                             (<TouchableOpacity style={styles.forgot_btn}>
-                                <Text style={styles.forgot_btn_text} onClick={this.onForgot}>OLVIDÓ</Text>
+                                <Text style={styles.forgot_btn_text} onPress={() => this.props.navigation.push('Forgot')}>OLVIDÓ</Text>
                             </TouchableOpacity>)
                             :null}
                     </View>
