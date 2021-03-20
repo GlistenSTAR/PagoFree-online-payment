@@ -78,7 +78,11 @@ class Home extends Component {
           <ScrollView style={{flex: 1, backgroundColor:'white'}}>
               <View style={styles.container}>
                 <UserAvatar/>
-                <View style={{marginTop:30}}><Image source={require('../assets/img/logoletter1.png')} style={styles.txt_login}></Image></View>
+                <View style={{marginTop:15, flex:1, flexDirection:'row'}}>
+                  <Image source={require('../assets/img/logo.png')} style={styles.txt_login}>
+                  </Image>
+                  <Text style={styles.txt_letter}>{' '}PagoFree</Text> 
+                </View>
                 <View
                   style={{
                     borderBottomColor: 'rgb(163, 162, 162)',
@@ -89,12 +93,12 @@ class Home extends Component {
                   <Text style={{fontSize:32}}>Good morning, Micky</Text>
                 </View>
                 <ImageBackground 
-                  source={require('../assets/img/coinsback.jpg')} 
+                  source={require('../assets/img/coin.png')} 
                   imageStyle={{ borderRadius: 15}} 
                   style={styles.freecoinback}
                 >
                   {/* <Text style={{fontSize:24, padding:15,  textAlign:'center', fontFamily:'blod'}}><Text style={{color:"blue"}}>PagoFree</Text> es una aplicación de escaneo rápido de QR.</Text> */}
-                  <Text style={{ color:'white', fontSize:24, marginTop:'auto',marginBottom:'auto', textAlign:'center', backgroundColor:'rgba(0,0,0,0.4)'}}>Freecoin tiene un precio de 50$ ahora.</Text>  
+                  <Text style={{ color:'white', fontSize:24,marginTop:'auto', marginBottom:20, textAlign:'center', backgroundColor:'rgba(0,0,0,0.4)'}}>Freecoin tiene un precio de 50$ ahora.</Text>  
                 </ImageBackground>
   
                 <View>
@@ -138,19 +142,31 @@ const styles = StyleSheet.create({
       backgroundColor:'white'
     },
     txt_login: {
-      width:deviceSize.width*0.6,
-      height:deviceSize.width*0.2,
-      marginBottom:15,
-      paddingTop:10
+      marginBottom:7,
+      height:90,
+      width:100,
+      justifyContent: 'flex-start',
+      flexDirection: 'row',
+      marginLeft:20
     },
     freecoinback:{
-      height:200,
+      height:300,
       paddingTop:30,
       marginTop:10
     },
     list:{
       marginBottom:5,
       marginTop:5
+    },
+    txt_letter:{
+      flex:1,
+      flexDirection:'row',
+      justifyContent:'flex-end',
+      fontSize:40,
+      marginTop:'auto',
+      marginBottom:'auto',
+      marginLeft:'auto',
+      color:'rgb(236, 171, 0)'
     }
   });
   
