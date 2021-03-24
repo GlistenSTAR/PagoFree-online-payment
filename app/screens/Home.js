@@ -90,7 +90,7 @@ class Home extends Component {
                   }}
                 />
                 <View style={{margin:10}}>
-                  <Text style={{fontSize:32}}>Good morning, Micky</Text>
+                  <Text style={{fontSize:32}}>FreeCoin to redeem</Text>
                 </View>
                 <ImageBackground 
                   source={require('../assets/img/coin.png')} 
@@ -98,7 +98,7 @@ class Home extends Component {
                   style={styles.freecoinback}
                 >
                   {/* <Text style={{fontSize:24, padding:15,  textAlign:'center', fontFamily:'blod'}}><Text style={{color:"blue"}}>PagoFree</Text> es una aplicación de escaneo rápido de QR.</Text> */}
-                  <Text style={{ color:'white', fontSize:24,marginTop:'auto', marginBottom:20, textAlign:'center', backgroundColor:'rgba(0,0,0,0.4)'}}>Freecoin tiene un precio de 50$ ahora.</Text>  
+                  {/* <Text style={{ color:'white', fontSize:24,marginTop:'auto', marginBottom:20, textAlign:'center', backgroundColor:'rgba(0,0,0,0.4)'}}>Freecoin tiene un precio de 50$ ahora.</Text>   */}
                 </ImageBackground>
   
                 <View>
@@ -125,15 +125,15 @@ class Home extends Component {
 
 const styles = StyleSheet.create({
     loading_container: {
-        position: 'absolute',
-        justifyContent: 'center',
-        alignItems: 'center',
-        top: 0,
-        left: 0,
-        width: deviceSize.width,
-        height: deviceSize.height,
-        backgroundColor: 'rgba(0,0,0,0.3)',
-        zIndex: 1000
+      position: 'absolute',
+      justifyContent: 'center',
+      alignItems: 'center',
+      top: 0,
+      left: 0,
+      width: deviceSize.width,
+      height: deviceSize.height,
+      backgroundColor: 'rgba(0,0,0,0.3)',
+      zIndex: 1000
     },
     container: {   
       flex: 1,
@@ -150,7 +150,7 @@ const styles = StyleSheet.create({
       marginLeft:20
     },
     freecoinback:{
-      height:300,
+      height:270,
       paddingTop:30,
       marginTop:10
     },

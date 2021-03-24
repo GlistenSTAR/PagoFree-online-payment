@@ -22,7 +22,8 @@ class History extends Component {
               url: 'https://www.kaspersky.com/content/en-global/images/repository/isc/2020/9910/a-guide-to-qr-codes-and-how-to-scan-qr-codes-2.png',
               subtitle: 'Zapatos 31-Jan-2021',
               date:'31-Jan-2021',
-              amount:'-30 $'
+              amount:'-30',
+              currency : 'RUB'
             },
             {
               id: 2,
@@ -30,7 +31,8 @@ class History extends Component {
               url: 'https://www.w3schools.com/w3images/avatar2.png',
               subtitle: 'Vice Chairman',
               date:"31-Jan-2021",
-              amount:'+100 $'
+              amount:'+100',
+              currency : 'USD'
             },
             ]
       }
@@ -74,7 +76,7 @@ class History extends Component {
                          <Text style={{fontSize:14, color:'grey', flexShrink: 1}} numberOfLines={2}>{item.subtitle}</Text>
                         </View>
                         <View style={styles.deleteicon}>
-                          {item.amount.slice(0,1)=="+"?<Text style={{fontSize:18, color:'rgb(50, 50, 250)'}}>{item.amount}</Text>:<Text style={{fontSize:18, color:'red'}}>{item.amount}</Text>}
+                          {item.amount.slice(0,1)=="+"?<Text style={{fontSize:18, color:'orange'}}>{item.amount} {item.currency}</Text>:<Text style={{fontSize:18, color:'rgb(29, 29, 29)'}}>{item.amount} {item.currency}</Text>}
                         </View>
                      </View>
                   </TouchableOpacity>
